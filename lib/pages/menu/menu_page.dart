@@ -9,12 +9,30 @@ import 'package:kiosk_training_center/pages/menu/usage_info/usage_info_page.dart
 import 'package:kiosk_training_center/pages/menu/widgets/menu_button.dart';
 import 'package:provider/provider.dart';
 
-class MenuPage extends StatelessWidget {
+class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
 
   @override
+  State<MenuPage> createState() => _MenuPageState();
+}
+
+class _MenuPageState extends State<MenuPage> {
+
+  final provider = MenuProvider();
+
+  @override
+  void initState() {
+    super.initState();
+    provider.init();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final provider = MenuProvider();
 
     return ChangeNotifierProvider.value(
         value: provider,
@@ -73,9 +91,9 @@ class MenuPage extends StatelessWidget {
                     children: [
                       ProjectInfoPage(),
                       UsageInfoPage(),
-                      AuthorInfoPage(author: provider.state.author[0], scrollController: provider.state.scrollController3),
-                      AuthorInfoPage(author: provider.state.author[1],   scrollController: provider.state.scrollController4),
-                      AuthorInfoPage(author: provider.state.author[2],  scrollController: provider.state.scrollController5),
+                      AuthorInfoPage(author: provider.state.author[0], scrollController: provider.state.scrollController1),
+                      AuthorInfoPage(author: provider.state.author[1],   scrollController: provider.state.scrollController2),
+                      AuthorInfoPage(author: provider.state.author[2],  scrollController: provider.state.scrollController3),
                     ],
                   ),
                 )

@@ -11,7 +11,9 @@ class MenuProvider extends ChangeNotifier {
         bool isTop = state.scrollController1.position.pixels == 0;
         if (!isTop) {
           state.pageController.nextPage(
-              duration: const Duration(milliseconds: 300), curve: Curves.ease);
+              duration: const Duration(milliseconds: 400), curve: Curves.ease);
+        } else {
+          state.pageController.previousPage(duration: const Duration(milliseconds: 400), curve: Curves.ease);
         }
       }
     });
@@ -21,7 +23,9 @@ class MenuProvider extends ChangeNotifier {
         bool isTop = state.scrollController2.position.pixels == 0;
         if (!isTop) {
           state.pageController.nextPage(
-              duration: const Duration(milliseconds: 300), curve: Curves.ease);
+              duration: const Duration(milliseconds: 400), curve: Curves.ease);
+        } else {
+          state.pageController.previousPage(duration: const Duration(milliseconds: 400), curve: Curves.ease);
         }
       }
     });
@@ -31,30 +35,14 @@ class MenuProvider extends ChangeNotifier {
         bool isTop = state.scrollController3.position.pixels == 0;
         if (!isTop) {
           state.pageController.nextPage(
-              duration: const Duration(milliseconds: 300), curve: Curves.ease);
+              duration: const Duration(milliseconds: 400), curve: Curves.ease);
+        } else {
+          state.pageController.previousPage(duration: const Duration(milliseconds: 400), curve: Curves.ease);
         }
       }
     });
 
-    state.scrollController4.addListener(() {
-      if (state.scrollController4.position.atEdge) {
-        bool isTop = state.scrollController4.position.pixels == 0;
-        if (!isTop) {
-          state.pageController.nextPage(
-              duration: const Duration(milliseconds: 300), curve: Curves.ease);
-        }
-      }
-    });
 
-    state.scrollController5.addListener(() {
-      if (state.scrollController5.position.atEdge) {
-        bool isTop = state.scrollController5.position.pixels == 0;
-        if (!isTop) {
-          state.pageController.nextPage(
-              duration: const Duration(milliseconds: 300), curve: Curves.ease);
-        }
-      }
-    });
   }
 
   void navigateToPage(int page) {

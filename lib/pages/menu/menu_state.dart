@@ -9,8 +9,6 @@ class MenuState {
   ScrollController scrollController1 = ScrollController();
   ScrollController scrollController2 = ScrollController();
   ScrollController scrollController3 = ScrollController();
-  ScrollController scrollController4 = ScrollController();
-  ScrollController scrollController5 = ScrollController();
 
   List<String> menu = ['프로젝트소개', '이용방법', '전보경', '최지목', '한솔'];
 
