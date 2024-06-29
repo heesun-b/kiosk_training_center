@@ -29,6 +29,10 @@ class _MenuPageState extends State<MenuPage> {
   @override
   void dispose() {
     super.dispose();
+    provider.state.pageController.dispose();
+    provider.state.scrollController1.dispose();
+    provider.state.scrollController2.dispose();
+    provider.state.scrollController3.dispose();
   }
 
   @override
