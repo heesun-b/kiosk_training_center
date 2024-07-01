@@ -1,0 +1,19 @@
+{
+  "projects": {
+    "default": "kiosk-83620"
+  },
+  "targets": {
+    "kiosk-83620": {
+      "hosting": {
+        "kiosk": [
+          "kiosk"
+        ],
+        "kiosk-83620": [
+          "kiosk-83620"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}
