@@ -14,35 +14,35 @@ class MenuProvider extends ChangeNotifier {
     state.peopleCount = peopleCount;
     
     // TODO : 나중에 삭제
-    state.cartList.add(
-      Cart(
-          authorName: state.author[0].name,
-          workName: state.author[0].works[0].krName,
-          workImage: state.author[0].works[0].imagePath,
-          workVideo:  state.author[0].works[0].videoPath,
-          caption: state.author[0].works[0].caption,
-          price: 3)
-    );
-
-    state.cartList.add(
-        Cart(
-            authorName: state.author[1].name,
-            workName: state.author[1].works[0].krName,
-            workImage: state.author[1].works[0].imagePath,
-            workVideo:  state.author[1].works[0].videoPath,
-            caption: state.author[1].works[0].caption,
-            price: 3)
-    );
-
-    state.cartList.add(
-        Cart(
-            authorName: state.author[1].name,
-            workName: state.author[1].works[1].krName,
-            workImage: state.author[1].works[1].imagePath,
-            workVideo:  state.author[1].works[1].videoPath,
-            caption: state.author[1].works[1].caption,
-            price: 3)
-    );
+    // state.cartList.add(
+    //   Cart(
+    //       authorName: state.author[0].name,
+    //       workName: state.author[0].works[0].krName,
+    //       workImage: state.author[0].works[0].imagePath,
+    //       workVideo:  state.author[0].works[0].videoPath,
+    //       caption: state.author[0].works[0].caption,
+    //       price: 3)
+    // );
+    //
+    // state.cartList.add(
+    //     Cart(
+    //         authorName: state.author[1].name,
+    //         workName: state.author[1].works[0].krName,
+    //         workImage: state.author[1].works[0].imagePath,
+    //         workVideo:  state.author[1].works[0].videoPath,
+    //         caption: state.author[1].works[0].caption,
+    //         price: 3)
+    // );
+    //
+    // state.cartList.add(
+    //     Cart(
+    //         authorName: state.author[1].name,
+    //         workName: state.author[1].works[1].krName,
+    //         workImage: state.author[1].works[1].imagePath,
+    //         workVideo:  state.author[1].works[1].videoPath,
+    //         caption: state.author[1].works[1].caption,
+    //         price: 3)
+    // );
 
     ///
     state.scrollController1.addListener(() {

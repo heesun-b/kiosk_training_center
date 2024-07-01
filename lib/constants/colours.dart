@@ -13,6 +13,7 @@ class Colours {
   static const Color red = Color(0xFFFF2728);
   static const Color green = Color(0xFFA2FF70);
   static const Color green2 = Color(0xFFB4D491);
+  static const Color green3 = Color(0xFF0BD03A);
   static const Color sky  = Color(0xFFD5E5F4);
   static const Color brown  = Color(0xFF604B50);
   // static const Color blue  = Color(0xFFA4C7FF);
