@@ -10,7 +10,8 @@ import 'package:kiosk_training_center/pages/menu/widgets/menu_button.dart';
 import 'package:provider/provider.dart';
 
 class MenuPage extends StatefulWidget {
-  const MenuPage({super.key});
+  final int peopleCount;
+  const MenuPage({super.key, required this.peopleCount});
 
   @override
   State<MenuPage> createState() => _MenuPageState();
@@ -23,7 +24,7 @@ class _MenuPageState extends State<MenuPage> {
   @override
   void initState() {
     super.initState();
-    provider.init();
+    provider.init(widget.peopleCount);
   }
 
   @override
@@ -46,65 +47,66 @@ class _MenuPageState extends State<MenuPage> {
   Widget _buildPage(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
-    return BasePage(
-        widget: Consumer<MenuProvider>(
-          builder: (context, provider, child) {
-            return Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: size.width * 0.035, right: size.width * 0.07, bottom: size.height * 0.04,),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          SizedBox(height: 10),
-                          Column(
-                            children: List.generate(
-                                5,
-                                (index) => MenuButton(
-                                  onTap: () => provider.navigateToPage(index),
-                                  text: provider.state.menu[index],
-                                  selected: provider.state.currentPage == index ? true : false,
-                                  count: index == 2 || index == 3 || index == 4 ? provider.state.author[index -2].works.length.toString() : null,
-                                )
+    return Consumer<MenuProvider>(
+        builder: (context, provider, child) {
+        return BasePage(
+              audioPath: 'assets/audios/sample.mp3',
+              peopleCount: widget.peopleCount,
+              floatingButtonOnTap: provider.state.currentPage == 0 || provider.state.currentPage == 1 ? null : () => provider.addCart(),
+              widget: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: size.width * 0.035, right: size.width * 0.07, bottom: size.height * 0.04,),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            const SizedBox(height: 10),
+                            Column(
+                              children: List.generate(
+                                  5,
+                                  (index) => MenuButton(
+                                    verticalPadding: index == 1 ? 20.0 : 10.0,
+                                    onTap: () => provider.navigateToPage(index),
+                                    text: provider.state.menu[index],
+                                    selected: provider.state.currentPage == index ? true : false,
+                                    count: index > 1 && provider.countCartList(provider.state.menu[index]) > 0
+                                        ? provider.countCartList(provider.state.menu[index]).toString()
+                                        : null,
+                                  )
+                              ),
                             ),
-                          ),
-                          MenuButton(
-                            onTap: () {},
-                            text: '장바구니',
-                            selected: false,
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
 
-                      MenuButton(
-                        onTap: () {},
-                        text:  '결제',
-                        selected:  false,
-                      )
-                    ],
+                        MenuButton(
+                          onTap: provider.state.cartList.isNotEmpty ?  () => provider.showCart(context) : (){},
+                          text:  '장바구니',
+                          selected:  false,
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: PageView(
-                    physics: AlwaysScrollableScrollPhysics(),
-                    controller: provider.state.pageController,
-                    scrollDirection: Axis.vertical,
-                    onPageChanged: (value) => provider.selectPage(value.floor()),
-                    children: [
-                      ProjectInfoPage(),
-                      UsageInfoPage(),
-                      AuthorInfoPage(author: provider.state.author[0], scrollController: provider.state.scrollController1),
-                      AuthorInfoPage(author: provider.state.author[1],   scrollController: provider.state.scrollController2),
-                      AuthorInfoPage(author: provider.state.author[2],  scrollController: provider.state.scrollController3),
-                    ],
-                  ),
-                )
-              ],
-            );
-          },
-        )
-    );
+                  Expanded(
+                    child: PageView(
+                      physics: provider.state.currentPage == 0 || provider.state.currentPage == 1 ? NeverScrollableScrollPhysics(): AlwaysScrollableScrollPhysics(),
+                      controller: provider.state.pageController,
+                      scrollDirection: Axis.vertical,
+                      onPageChanged: (value) => provider.selectPage(value.floor()),
+                      children: [
+                        ProjectInfoPage(),
+                        UsageInfoPage(),
+                        AuthorInfoPage(author: provider.state.author[0], scrollController: provider.state.scrollController1),
+                        AuthorInfoPage(author: provider.state.author[1],   scrollController: provider.state.scrollController2),
+                        AuthorInfoPage(author: provider.state.author[2],  scrollController: provider.state.scrollController3),
+                      ],
+                    ),
+                  )
+                ],
+              )
+          );
+        },
+);
   }
 }

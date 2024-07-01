@@ -11,8 +11,8 @@ class Routers {
         path: '/',
         name: 'start',
         builder: (_, __) {
-          // return const StartPage();
-          return const MenuPage();
+          return const StartPage();
+          // return const MenuPage(peopleCount: 1);
         },
       ),
       GoRoute(
@@ -25,8 +25,8 @@ class Routers {
       GoRoute(
         path: '/menu',
         name: 'menu',
-        builder: (_, __) {
-          return const MenuPage();
+        builder: (context, state) {
+          return MenuPage(peopleCount: state.extra as int);
         },
       ),
     ],

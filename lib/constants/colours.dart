@@ -15,10 +15,12 @@ class Colours {
   static const Color green2 = Color(0xFFB4D491);
   static const Color sky  = Color(0xFFD5E5F4);
   static const Color brown  = Color(0xFF604B50);
-  static const Color blue  = Color(0xFFA4C7FF);
+  // static const Color blue  = Color(0xFFA4C7FF);
+  static const Color blue  = Color(0xFF90bee8);
   static const Color blueGrey  = Color(0xFF4F6980);
 
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xff000000);
   static const Color grey = Color(0xffAFAFAF);
+  static const Color grey2 = Color(0xff828181);
 }

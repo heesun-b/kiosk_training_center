@@ -11,8 +11,9 @@ class MenuButton extends StatelessWidget {
   final String text;
   final bool selected;
   final String? count;
+  final double verticalPadding;
 
-  const MenuButton({super.key, required this.onTap, required this.text, required this.selected, this.count});
+  const MenuButton({super.key, required this.onTap, required this.text, required this.selected, this.count, this.verticalPadding = 10.0});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class MenuButton extends StatelessWidget {
           hoverDuration: const Duration(milliseconds: 300),
 
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            padding: EdgeInsets.symmetric(vertical: verticalPadding),
             child: Stack(
               alignment: Alignment.center,
               children: [

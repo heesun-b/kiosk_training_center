@@ -27,35 +27,49 @@ class CountPeople extends StatelessWidget {
           Row(
             children: [
               GestureDetector(
-                  onTap: () => provider.add(),
-                  child: Image.asset('assets/images/icons/add_icon.png', width: 20,)),
-              Container(
-                width: 40,
-                height: 40,
-                alignment: Alignment.center,
-                margin: const EdgeInsets.symmetric(horizontal: 30),
-                decoration: BoxDecoration(
-                  color: Colours.white,
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow:[
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.8),
-                      spreadRadius: 1,
-                      blurRadius: 3,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                  border: Border.all(
-                    color: Colours.pink1,
-                    width: 1,
-                  ),
-                ),
-                child: Text(provider.state.count.toString(),style: const TextStyle(fontFamily: MyTextStyle.kimjungchulGothic, fontSize: 20, fontWeight: FontWeight.bold)),
-              ),
-              GestureDetector(
                   onTap: () => provider.minus(),
                   child: Image.asset('assets/images/icons/minus_icon.png', width: 20)),
-
+              // Container(
+              //   width: 40,
+              //   height: 40,
+              //   alignment: Alignment.center,
+              //   margin: const EdgeInsets.symmetric(horizontal: 30),
+              //   decoration: BoxDecoration(
+              //     color: Colours.white,
+              //     borderRadius: BorderRadius.circular(5),
+              //     boxShadow:[
+              //       BoxShadow(
+              //         color: Colors.grey.withOpacity(0.8),
+              //         spreadRadius: 1,
+              //         blurRadius: 3,
+              //         offset: const Offset(0, 3), // changes position of shadow
+              //       ),
+              //     ],
+              //     border: Border.all(
+              //       color: Colours.pink1,
+              //       width: 1,
+              //     ),
+              //   ),
+              //   child: Text(provider.state.count.toString(),style: const TextStyle(fontFamily: MyTextStyle.kimjungchulGothic, fontSize: 20, fontWeight: FontWeight.bold)),
+              // ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                child: Text(
+                    provider.state.count.toString(),
+                    style: const TextStyle(
+                        fontFamily: MyTextStyle.kimjungchulGothic,
+                        fontSize: 25, fontWeight: FontWeight.bold,
+                        shadows: [
+                          Shadow(
+                            offset: Offset(0.0, 3.0),
+                            blurRadius: 2.0,
+                            color: Colours.grey
+                          ),
+                        ],)),
+              ),
+              GestureDetector(
+                  onTap: () => provider.add(),
+                  child: Image.asset('assets/images/icons/add_icon.png', width: 20,)),
               const SizedBox(width: 25,)
             ],
           )

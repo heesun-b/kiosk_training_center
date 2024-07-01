@@ -20,7 +20,7 @@ class SelectMethod extends StatelessWidget {
           children: [
             Text("감상 방법 선택", style: TextStyle(fontFamily: MyTextStyle.computersetak, fontWeight: FontWeight.w500, fontSize: size.width >= CriteriaSize.widthSize2 ? 30 : 25)),
             InkWell(
-              onTap: () => provider.changeSelect(),
+              onTap: provider.state.count > 0 ? () => provider.changeSelect(context) : null,
               child: Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),

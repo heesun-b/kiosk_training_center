@@ -6,6 +6,6 @@ class UsageInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("이용방법 페이지 입니당 😺😺😺");
+    return Text("도움말 페이지 입니당 😺😺😺");
   }
 }

@@ -1,14 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:kiosk_training_center/common_widgets/my_appbar.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/criteria_size.dart';
 import 'package:kiosk_training_center/constants/my_text_style.dart';
 import 'package:kiosk_training_center/pages/start/widgets/title_container.dart';
 
-class StartPage extends StatelessWidget {
+class StartPage extends StatefulWidget {
   const StartPage({super.key});
+
+  @override
+  State<StartPage> createState() => _StartPageState();
+}
+
+class _StartPageState extends State<StartPage> {
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +26,9 @@ class StartPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colours.main,
-      appBar: MyAppbar(),
+      appBar: MyAppbar(
+
+      ),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -28,7 +40,10 @@ class StartPage extends StatelessWidget {
               Text("키오스크 트레이닝 센터", style: TextStyle(color: Colours.sky, fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width >= CriteriaSize.widthSize1 ? 65 : size.width >= CriteriaSize.widthSize2 ? 55 : 45)),
               const SizedBox(height: 10),
               GestureDetector(
-                onTap: () => GoRouter.of(context).goNamed("select_people_and_method"),
+                onTap: () {
+                  // stopAudio();
+                  GoRouter.of(context).goNamed("select_people_and_method");
+                },
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
                   margin: const EdgeInsets.only(top: 30),

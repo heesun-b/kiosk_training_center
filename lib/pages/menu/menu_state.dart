@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:kiosk_training_center/dto/author.dart';
+import 'package:kiosk_training_center/dto/cart.dart';
 import 'package:kiosk_training_center/dto/work.dart';
 
 class MenuState {
   int currentPage = 0;
+  int peopleCount = 0;
 
   PageController pageController = PageController();
   ScrollController scrollController1 = ScrollController();
   ScrollController scrollController2 = ScrollController();
   ScrollController scrollController3 = ScrollController();
 
-  List<String> menu = ['프로젝트소개', '이용방법', '전보경', '최지목', '한솔'];
+  List<String> menu = ['프로젝트소개', '도움말', '전보경', '최지목', '한솔'];
+
+  List<Cart> cartList =[];
+  List<Cart> selectList =[];
 
   List<Author> author = [
     Author(
@@ -45,7 +50,7 @@ class MenuState {
               infoPath:'assets/textfiles/work_white_stone_age.txt' )
         ]),
     Author(
-        name: '한 솔',
+        name: '한솔',
         infoPath: 'assets/textfiles/author_hs.txt',
         works: [
           Work(

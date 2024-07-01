@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/dto/author.dart';
 import 'package:kiosk_training_center/pages/menu/author_info/widgets/author_info_area.dart';
 import 'package:kiosk_training_center/pages/menu/author_info/widgets/works_info_area.dart';
