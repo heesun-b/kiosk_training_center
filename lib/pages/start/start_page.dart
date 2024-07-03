@@ -16,9 +16,23 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
+  final player = AudioPlayer();
 
+  void playAudio() async {
+    await player.setAsset("assets/audios/click.mp3");
+    await player.setVolume(1.0);
+    await player.play();
+  }
 
+  void stopAudio() async {
+    await player.stop();
+  }
 
+  @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +40,7 @@ class _StartPageState extends State<StartPage> {
 
     return Scaffold(
       backgroundColor: Colours.main,
-      appBar: MyAppbar(
-
-      ),
+      appBar: MyAppbar(),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -41,8 +53,14 @@ class _StartPageState extends State<StartPage> {
               const SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
-                  // stopAudio();
-                  GoRouter.of(context).goNamed("select_people_and_method");
+                  playAudio();
+
+                  player.playerStateStream.listen((playerState) {
+                    if (playerState.processingState == ProcessingState.completed) {
+                      GoRouter.of(context).goNamed("select_people_and_method");
+                    }
+                  });
+
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),

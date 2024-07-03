@@ -13,9 +13,9 @@ class SelectMethod extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
-    return Consumer<SelectPeopleAndMethodProvider>(
-        builder: (context, provider, child) {
-        return Row(
+    var provider =  context.watch<SelectPeopleAndMethodProvider>();
+
+    return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text("감상 방법 선택", style: TextStyle(fontFamily: MyTextStyle.computersetak, fontWeight: FontWeight.w500, fontSize: size.width >= CriteriaSize.widthSize2 ? 30 : 25)),
@@ -45,8 +45,6 @@ class SelectMethod extends StatelessWidget {
             )
           ],
         );
-        },
-);
   }
 }
 

@@ -36,7 +36,7 @@ class _MyAppbarState extends State<MyAppbar>  {
   }
 
   void playAudio() async {
-    await player.setAsset("assets/audios/sample.mp3");
+    await player.setAsset("assets/audios/first.mp3");
     await player.setVolume(1.0);
     await player.play();
   }

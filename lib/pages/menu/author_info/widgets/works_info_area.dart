@@ -13,6 +13,8 @@ class WorksInfoArea extends StatelessWidget {
   Widget build(BuildContext context) {
 
     var size = MediaQuery.of(context).size;
+    var provider =  context.watch<MenuProvider>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -23,7 +25,7 @@ class WorksInfoArea extends StatelessWidget {
           children: List.generate(
               author.works.length,
                   (index) => Consumer<MenuProvider>(
-                        builder: (context, provider, child) {
+                        builder: (context, _, child) {
                         return GestureDetector(
                                   onTap: () => provider.selectWorks(author, author.works[index]),
                                   child: Container(

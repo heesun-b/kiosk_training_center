@@ -18,45 +18,42 @@ class MenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var provider =  context.watch<MenuProvider>();
 
-    return Consumer<MenuProvider>(
-      builder: (context, provider, child) {
-        return InkWell(
-          hoverColor: Colors.transparent,
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          onTap: onTap,
-          hoverDuration: const Duration(milliseconds: 300),
+    return InkWell(
+      hoverColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      onTap: onTap,
+      hoverDuration: const Duration(milliseconds: 300),
 
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: verticalPadding),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                if(selected)
-                Image.asset('assets/images/mark.png', width: size.width * 0.085),
-                Badge(
-                  label: count != null ? Text(count!) : null,
-                  backgroundColor: Colours.red,
-                  isLabelVisible: count != null && selected ? true : false,
-                  offset: Offset(20, -10),
-                  child: SizedBox(
-                    width: size.width * 0.075,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        changeText(text: text.length < 4 ? text.substring(0,text.length) : text.substring(0,4), size: size.width),
-                        if(text.length > 4)
-                          changeText(text: text.substring(4), size: size.width),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        );
-      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: verticalPadding),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            if(selected)
+            Image.asset('assets/images/mark.png', width: size.width * 0.085),
+            Badge(
+              label: count != null ? Text(count!) : null,
+              backgroundColor: Colours.red,
+              isLabelVisible: count != null && selected ? true : false,
+              offset: Offset(20, -10),
+              child: SizedBox(
+                width: size.width * 0.075,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    changeText(text: text.length < 4 ? text.substring(0,text.length) : text.substring(0,4), size: size.width),
+                    if(text.length > 4)
+                      changeText(text: text.substring(4), size: size.width),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 

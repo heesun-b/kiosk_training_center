@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/dto/author.dart';
 import 'package:kiosk_training_center/dto/cart.dart';
 import 'package:kiosk_training_center/dto/work.dart';
-import 'package:kiosk_training_center/pages/menu/cart_page/cart_page.dart';
 import 'package:kiosk_training_center/pages/menu/menu_state.dart';
 
 class MenuProvider extends ChangeNotifier {
@@ -12,37 +10,6 @@ class MenuProvider extends ChangeNotifier {
 
   void init(int peopleCount) {
     state.peopleCount = peopleCount;
-    
-    // TODO : 나중에 삭제
-    // state.cartList.add(
-    //   Cart(
-    //       authorName: state.author[0].name,
-    //       workName: state.author[0].works[0].krName,
-    //       workImage: state.author[0].works[0].imagePath,
-    //       workVideo:  state.author[0].works[0].videoPath,
-    //       caption: state.author[0].works[0].caption,
-    //       price: 3)
-    // );
-    //
-    // state.cartList.add(
-    //     Cart(
-    //         authorName: state.author[1].name,
-    //         workName: state.author[1].works[0].krName,
-    //         workImage: state.author[1].works[0].imagePath,
-    //         workVideo:  state.author[1].works[0].videoPath,
-    //         caption: state.author[1].works[0].caption,
-    //         price: 3)
-    // );
-    //
-    // state.cartList.add(
-    //     Cart(
-    //         authorName: state.author[1].name,
-    //         workName: state.author[1].works[1].krName,
-    //         workImage: state.author[1].works[1].imagePath,
-    //         workVideo:  state.author[1].works[1].videoPath,
-    //         caption: state.author[1].works[1].caption,
-    //         price: 3)
-    // );
 
     ///
     state.scrollController1.addListener(() {
@@ -131,22 +98,28 @@ class MenuProvider extends ChangeNotifier {
      notifyListeners();
   }
 
+  void deleteCart(int index) {
+    state.cartList.removeAt(index);
+    notifyListeners();
+  }
+
   int countCartList(String menu) {
       var sameList = state.cartList.where((element) => element.authorName == menu).toList();
       return sameList.length;
   }
 
-  void showCart(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+  void nextPaymentStep() {
+    state.currentPaymentStep = state.currentPaymentStep +1;
+    notifyListeners();
+  }
 
-    showDialog(
-        context: context,
-        builder: (context) {
-          return Container(
-            color: Colours.blue,
-            margin: EdgeInsets.symmetric(horizontal: size.width * 0.12, vertical: size.height * 0.1),
-            child: CartPage(peopleCount: state.peopleCount,cartList: state.cartList)
-          );
-        },);
+  void clickedPaymentFirstButton() {
+    state.clickedFirstStep = !state.clickedFirstStep;
+    notifyListeners();
+  }
+
+  void saveSign(sign) {
+    state.signByte = sign;
+    notifyListeners();
   }
 }
