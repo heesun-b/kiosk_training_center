@@ -45,7 +45,6 @@ class _MenuPageState extends State<MenuPage> {
     return BasePage(
           audioPath: provider.state.currentPage > 1 ? 'assets/audios/fourth.mp3' : 'assets/audios/third.mp3',
           peopleCount: widget.peopleCount,
-          floatingButtonOnTap: provider.state.currentPage == 0 || provider.state.currentPage == 1 ? null : () => provider.addCart(),
           widget: Row(
             children: [
               Padding(

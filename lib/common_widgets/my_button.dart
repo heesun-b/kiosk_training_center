@@ -10,8 +10,9 @@ class MyButton extends StatelessWidget {
   final double fontSize;
   final String fontFamily;
   final double radius;
+  final bool check;
 
-  const MyButton({super.key, this.radius = 10.0,  this.fontFamily = MyTextStyle.computersetak, required this.onTap, required this.title, required this.width, required this.height, required this.fontSize});
+  const MyButton({super.key, this.radius = 10.0,  this.check = false, this.fontFamily = MyTextStyle.computersetak, required this.onTap, required this.title, required this.width, required this.height, required this.fontSize});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class MyButton extends StatelessWidget {
         height: height,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: Colours.white,
+            color: check ? Colours.pink1 : Colours.white,
             border: Border.all(color: Colours.pink1, width: 2),
             borderRadius: BorderRadius.circular(radius),
             boxShadow: const [

@@ -17,7 +17,6 @@ class MenuState {
   List<String> menu = ['프로젝트소개', '도움말', '전보경', '최지목', '한솔'];
 
   List<Cart> cartList =[];
-  List<Cart> selectList =[];
 
   List<Author> author = [
     Author(

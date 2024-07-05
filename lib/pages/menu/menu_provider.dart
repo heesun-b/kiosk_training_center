@@ -68,34 +68,41 @@ class MenuProvider extends ChangeNotifier {
     return await rootBundle.loadString(authorInfo);
   }
   
-  void selectWorks(Author author, Work work) {
-   var cart = Cart(authorName: author.name, workName: work.krName, workImage: work.imagePath, workVideo: work.videoPath, caption: work.caption, price: 3);
+  // void selectWorks(Author author, Work work) {
+  //  var cart = Cart(authorName: author.name, workName: work.krName, workImage: work.imagePath, workVideo: work.videoPath, caption: work.caption, price: 3);
+  //
+  //  var count =  state.selectList.where((element) => element.workName == work.krName).length;
+  //  if(count == 0) {
+  //    state.selectList.add(cart);
+  //  } else {
+  //    state.selectList.removeWhere((element) => element.workName == work.krName);
+  //  }
+  //  notifyListeners();
+  // }
 
-   var count =  state.selectList.where((element) => element.workName == work.krName).length;
-   if(count == 0) {
-     state.selectList.add(cart);
-   } else {
-     state.selectList.removeWhere((element) => element.workName == work.krName);
-   }
-   notifyListeners();
-  }
-
-  bool checkSelect (Work work) {
-   var count = state.selectList.where((element) => element.workName == work.krName).length;
-   return count > 0 ? true : false;
-  }
+  // bool checkSelect (Work work) {
+  //  var count = state.selectList.where((element) => element.workName == work.krName).length;
+  //  return count > 0 ? true : false;
+  // }
   
-  void addCart() {
-    List<Cart> newList = [];
-     for (var selectWork in state.selectList) {
-       if(state.cartList.where((work) => selectWork.workName == work.workName).isEmpty) {
-         newList.add(selectWork);
-       }
-     }
+  void addCart(Author author, Work work) {
 
-     state.cartList.addAll(newList);
-     state.selectList = [];
+    var cart = Cart(
+        authorName: author.name,
+        workName: work.krName,
+        workImage: work.imagePath,
+        workVideo: work.videoPath,
+        caption: work.caption,
+        price: 3);
+
+     state.cartList.add(cart);
+
      notifyListeners();
+  }
+
+  bool checkCart (Work work) {
+   var count = state.cartList.where((element) => element.workName == work.krName).length;
+   return count > 0 ? true : false;
   }
 
   void deleteCart(int index) {

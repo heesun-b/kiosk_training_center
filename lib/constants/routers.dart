@@ -16,6 +16,7 @@ class Routers {
         name: 'start',
         builder: (_, __) {
           return const StartPage();
+          // return const MenuPage(peopleCount: 1,);
 
           // return VideoPage(
           //   cartList: [
