@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/my_text_style.dart';
+import 'package:kiosk_training_center/pages/select_people_and_method/select_people_and_method_provider.dart';
+import 'package:provider/provider.dart';
 
 class BasePage extends StatefulWidget {
   final Widget widget;
@@ -13,78 +14,33 @@ class BasePage extends StatefulWidget {
   final VoidCallback? floatingButtonOnTap;
   final bool forCart;
 
-  const BasePage({super.key, required this.widget, this.peopleCount, required this.audioPath, this.floatingButtonOnTap, this.forCart = false});
+  BasePage({super.key, required this.widget, this.peopleCount, required this.audioPath, this.floatingButtonOnTap, this.forCart = false});
 
   @override
   State<BasePage> createState() => _BasePageState();
 }
 
 class _BasePageState extends State<BasePage> {
-  late DateTime _currentTime;
-  late Timer _timer;
-  final player = AudioPlayer();
 
-  bool isPlayedAudio = false;
 
   @override
   void initState() {
     super.initState();
-    _currentTime = DateTime.now();
-    _timer = Timer.periodic(Duration(seconds: 1), (Timer t) => _updateTime());
-    player.playerStateStream.listen((playerState) {
-      if (playerState.processingState == ProcessingState.completed) {
-        setState(() {
-          isPlayedAudio = false;
-        });
-      }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<SelectPeopleAndMethodProvider>(context, listen: false).init();
     });
   }
 
   @override
   void dispose() {
-    _timer.cancel();
-    player.dispose();
+    Provider.of<SelectPeopleAndMethodProvider>(context, listen: false).baseDispose();
     super.dispose();
   }
 
-  void _updateTime() {
-    setState(() {
-      _currentTime = DateTime.now();
-    });
-  }
-
-  void playAudio() async {
-    setState(() {
-      isPlayedAudio = !isPlayedAudio;
-    });
-
-    if(!isPlayedAudio) {
-      await player.stop();
-    } else {
-      await player.setAsset(widget.audioPath);
-      await player.setVolume(1.0);
-      await player.play();
-    }
-  }
-
-  String nowDate(DateTime dateTime) {
-    const weekDays = ['월', '화', '수', '목', '금', '토', '일'];
-    String weekDay = weekDays[dateTime.weekday - 1];
-
-    String period = dateTime.hour < 12 ? '오전' : '오후';
-    int hour = dateTime.hour % 12;
-    if (hour == 0) hour = 12;
-    String minute = dateTime.minute.toString().padLeft(2, '0');
-
-    return '${dateTime.year}. ${dateTime.month}. ${dateTime.day} ($weekDay) $period $hour시 $minute분';
-  }
-
-
   @override
   Widget build(BuildContext context) {
-
+    var provider =  context.watch<SelectPeopleAndMethodProvider>();
     var size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Colours.background,
       body: SafeArea(
@@ -111,7 +67,7 @@ class _BasePageState extends State<BasePage> {
                           children: [
                             if(widget.peopleCount != null)
                             Text('총 인원 ${widget.peopleCount}명 / ', style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: !widget.forCart ? 16 : 13)),
-                            Text(nowDate(_currentTime), style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize:  !widget.forCart ? 16 : 13)),
+                            Text(nowDate(provider.state.currentTime), style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize:  !widget.forCart ? 16 : 13)),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 10.0),
                               child: MaterialButton(
@@ -127,8 +83,8 @@ class _BasePageState extends State<BasePage> {
                                   child: Center(child: Text("직원호출", style: TextStyle(fontFamily: MyTextStyle.computersetak, fontSize: !widget.forCart ? 14 : 12, height: 2.0))),),
                             ),
                             IconButton(
-                                onPressed: () => playAudio(),
-                                icon: Icon(isPlayedAudio ? CupertinoIcons.speaker_slash  : CupertinoIcons.speaker_2, color: Colours.white, size: !widget.forCart ? 30 : 25,)),
+                                onPressed: () => provider.playAudio(widget.audioPath),
+                                icon: Icon(provider.state.isPlayedAudio ? CupertinoIcons.speaker_slash  : CupertinoIcons.speaker_2, color: Colours.white, size: !widget.forCart ? 30 : 25,)),
                             Container(
                                 height: size.height * 0.08,
                                 width: 100,
@@ -204,6 +160,18 @@ class _BasePageState extends State<BasePage> {
         ),
       ) : null,
     );
+  }
+
+  String nowDate(DateTime dateTime) {
+    const weekDays = ['월', '화', '수', '목', '금', '토', '일'];
+    String weekDay = weekDays[dateTime.weekday - 1];
+
+    String period = dateTime.hour < 12 ? '오전' : '오후';
+    int hour = dateTime.hour % 12;
+    if (hour == 0) hour = 12;
+    String minute = dateTime.minute.toString().padLeft(2, '0');
+
+    return '${dateTime.year}. ${dateTime.month}. ${dateTime.day} ($weekDay) $period $hour시 $minute분';
   }
 }
 

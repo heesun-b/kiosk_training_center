@@ -5,7 +5,6 @@ import 'package:kiosk_training_center/constants/my_text_style.dart';
 import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
-import 'dart:ui' as ui;
 
 class PaymentThirdStep extends StatefulWidget {
   const PaymentThirdStep({super.key});

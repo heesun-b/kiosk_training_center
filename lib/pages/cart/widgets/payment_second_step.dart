@@ -14,7 +14,7 @@ class PaymentSecondStep extends StatefulWidget {
   State<PaymentSecondStep> createState() => _PaymentSecondStepState();
 }
 
-class _PaymentSecondStepState extends State<PaymentSecondStep> with WidgetsBindingObserver {
+class _PaymentSecondStepState extends State<PaymentSecondStep>{
 
   Timer? timer;
 
@@ -27,11 +27,14 @@ class _PaymentSecondStepState extends State<PaymentSecondStep> with WidgetsBindi
       // var provider =  context.watch<MenuProvider>();
       timer = Timer(const Duration(seconds: 3), () {
         Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
-        // provider.nextPaymentStep();
       });
     });
+  }
 
-
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 
   @override

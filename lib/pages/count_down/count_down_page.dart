@@ -24,17 +24,17 @@ class _CountDownPageState extends State<CountDownPage> {
   @override
   void initState() {
     super.initState();
-      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-        if (currentIndex < count.length) {
-          setState(() {
-            textVisibility[currentIndex] = false;
-            currentIndex++;
-          });
-        } else {
-          timer.cancel();
-          GoRouter.of(context).go('/video', extra: widget.cartList);
-        }
-      });
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (currentIndex < count.length) {
+        setState(() {
+          textVisibility[currentIndex] = false;
+          currentIndex++;
+        });
+      } else {
+        timer.cancel();
+        GoRouter.of(context).go('/video', extra: widget.cartList);
+      }
+    });
   }
 
   @override

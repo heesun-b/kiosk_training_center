@@ -17,24 +17,14 @@ class SelectPeopleAndMethodPage extends StatefulWidget {
 
 class _SelectPeopleAndMethodPageState extends State<SelectPeopleAndMethodPage> {
 
-
-
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-
-      Provider.of<SelectPeopleAndMethodProvider>(context, listen: false).init();
-
-    });
-
   }
 
   @override
   Widget build(BuildContext context) {
-
     var size = MediaQuery.of(context).size;
-
     return BasePage(
       audioPath: 'assets/audios/second.mp3',
       widget: Padding(

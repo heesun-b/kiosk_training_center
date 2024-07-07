@@ -21,19 +21,19 @@ class _PaymentFifthStepState extends State<PaymentFifthStep> {
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
-      GoRouter.of(context).pushNamed("count_down", extra: Provider.of<MenuProvider>(context, listen: false).state.cartList,);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      timer = Timer(const Duration(seconds: 3), () {
+        GoRouter.of(context).pushNamed("count_down", extra: Provider.of<MenuProvider>(context, listen: false).state.cartList,);
+      });
     });
   }
-
 
   @override
   void dispose() {
     timer?.cancel();
     super.dispose();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
