@@ -1,9 +1,39 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/my_text_style.dart';
+import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
+import 'package:provider/provider.dart';
 
-class PaymentFifthStep extends StatelessWidget {
+class PaymentFifthStep extends StatefulWidget {
   const PaymentFifthStep({super.key});
+
+  @override
+  State<PaymentFifthStep> createState() => _PaymentFifthStepState();
+}
+
+class _PaymentFifthStepState extends State<PaymentFifthStep> {
+
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
+      GoRouter.of(context).pushNamed("count_down", extra: Provider.of<MenuProvider>(context, listen: false).state.cartList,);
+    });
+  }
+
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
+
 
   @override
   Widget build(BuildContext context) {

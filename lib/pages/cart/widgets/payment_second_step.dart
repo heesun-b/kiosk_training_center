@@ -1,12 +1,42 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/my_text_style.dart';
+import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
+import 'package:provider/provider.dart';
 
-class PaymentSecondStep extends StatelessWidget {
+class PaymentSecondStep extends StatefulWidget {
+
   const PaymentSecondStep({super.key});
 
   @override
+  State<PaymentSecondStep> createState() => _PaymentSecondStepState();
+}
+
+class _PaymentSecondStepState extends State<PaymentSecondStep> with WidgetsBindingObserver {
+
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Provider.of<MenuProvider>(context, listen: false).init(widget.peopleCount);
+      // var provider =  context.watch<MenuProvider>();
+      timer = Timer(const Duration(seconds: 3), () {
+        Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
+        // provider.nextPaymentStep();
+      });
+    });
+
+
+  }
+
+  @override
   Widget build(BuildContext context) {
+
     var size = MediaQuery.of(context).size;
 
     return Padding(
@@ -19,12 +49,12 @@ class PaymentSecondStep extends StatelessWidget {
               Expanded(child: Text("카드를\n넣어\n주세요", style: TextStyle(color: Colours.darkGrey, fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.04, decoration: TextDecoration.none, height: 1.5), softWrap: true,)),
               Transform.rotate(
                   angle: 180 * (3.1415927 / 180),
-                  child: Image.asset('assets/images/arrow.gif', width: size.width * 0.2, fit: BoxFit.fill,))
+                  child: Image.asset('assets/images/arrow.gif', width: size.width * 0.18, fit: BoxFit.fill,))
             ],
           ),
           Container(
-            width: size.width * 0.2,
-            height: size.height * 0.47,
+            width: size.width * 0.17,
+            height: size.height * 0.45,
             margin: const EdgeInsets.symmetric(vertical: 10),
             padding:  const EdgeInsets.only(bottom: 10),
             alignment: Alignment.bottomCenter,

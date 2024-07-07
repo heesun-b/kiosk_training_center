@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/my_text_style.dart';
+import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 class PaymentFourthStep extends StatefulWidget {
   const PaymentFourthStep({super.key});
@@ -15,18 +17,29 @@ class PaymentFourthStep extends StatefulWidget {
 class _PaymentFourthStepState extends State<PaymentFourthStep> {
   int _currentCircle = 0;
 
+  Timer? timer;
+  Timer? timer2;
+
   @override
   void initState() {
     super.initState();
-    Timer.periodic(const Duration(milliseconds: 500), (Timer timer) {
+    timer = Timer.periodic(const Duration(milliseconds: 500), (Timer timer) {
       setState(() {
         _currentCircle = (_currentCircle + 1) % 4;
       });
     });
+
+
+    timer2 = Timer(const Duration(seconds: 3), () {
+      Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
+    });
+
   }
 
   @override
   void dispose() {
+    timer?.cancel();
+    timer2?.cancel();
     super.dispose();
   }
 

@@ -4,6 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/pages/cart/widgets/payment_fifth_step.dart';
 import 'package:kiosk_training_center/pages/cart/widgets/payment_first_step.dart';
+import 'package:kiosk_training_center/pages/cart/widgets/payment_fourth_step.dart';
+import 'package:kiosk_training_center/pages/cart/widgets/payment_second_step.dart';
+import 'package:kiosk_training_center/pages/cart/widgets/payment_third_step.dart';
 import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -35,11 +38,11 @@ class _PaymentPopUpState extends State<PaymentPopUp> {
               decoration: const BoxDecoration(
                 color: Colours.background,
               ),
-              // child: provider.state.currentStep == 0 ? PaymentFirstStep() :
-              // provider.state.currentStep == 1 ? PaymentSecondStep() :
-              // provider.state.currentStep == 2 ? PaymentThirdStep() :
-              // provider.state.currentStep == 3 ? PaymentFourthStep() : PaymentFifthStep()
-              child: PaymentFirstStep()
+              child: provider.state.currentPaymentStep == 0 ? PaymentFirstStep() :
+              provider.state.currentPaymentStep == 1 ? PaymentSecondStep() :
+              provider.state.currentPaymentStep == 2 ? PaymentThirdStep() :
+              provider.state.currentPaymentStep == 3 ? PaymentFourthStep() : PaymentFifthStep()
+              // child: PaymentFirstStep()
           );
         },
       ),

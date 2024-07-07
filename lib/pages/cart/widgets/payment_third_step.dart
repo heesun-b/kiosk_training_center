@@ -21,11 +21,13 @@ class _PaymentThirdStepState extends State<PaymentThirdStep> {
     signatureGlobalKey.currentState!.clear();
   }
 
-  void _handleSaveButtonPressed() async {
-    var provider =  context.watch<MenuProvider>();
-    final data = await signatureGlobalKey.currentState!.toImage(pixelRatio: 3.0);
-    final bytes = await data.toByteData(format: ui.ImageByteFormat.png);
-    provider.saveSign(bytes!.buffer.asUint8List());
+  Future<void> _handleSaveButtonPressed() async {
+    // var provider =  context.watch<MenuProvider>();
+    // final data = await signatureGlobalKey.currentState!.toImage(pixelRatio: 3.0);
+    // final bytes = await data.toByteData(format: ui.ImageByteFormat.png);
+    // provider.saveSign(bytes!.buffer.asUint8List());
+
+    Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
   }
 
   @override
