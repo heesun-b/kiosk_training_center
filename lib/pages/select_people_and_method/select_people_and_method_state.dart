@@ -10,5 +10,7 @@ class SelectPeopleAndMethodState {
   DateTime currentTime = DateTime.now();
   Timer timer = Timer(const Duration(seconds: 1), () {});
   AudioPlayer player = AudioPlayer();
+  AudioPlayer player2 = AudioPlayer();
   var isPlayedAudio = false;
+  var isPlayedAudio2 = false;
 }

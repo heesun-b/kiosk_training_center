@@ -33,7 +33,7 @@ class _BasePageState extends State<BasePage> {
 
   @override
   void dispose() {
-    Provider.of<SelectPeopleAndMethodProvider>(context, listen: false).baseDispose();
+    // Provider.of<SelectPeopleAndMethodProvider>(context, listen: false).baseDispose();
     super.dispose();
   }
 
@@ -72,7 +72,7 @@ class _BasePageState extends State<BasePage> {
                               padding: const EdgeInsets.symmetric(horizontal: 10.0),
                               child: MaterialButton(
                                   // TODO : 추가
-                                  onPressed: (){},
+                                  onPressed: () => provider.playAudio2(),
                                   color: Colours.blue,
                                   padding: EdgeInsets.zero,
                                   height: 30,

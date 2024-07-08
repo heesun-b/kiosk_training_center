@@ -11,6 +11,7 @@ import 'package:kiosk_training_center/pages/cart/widgets/list_area.dart';
 import 'package:kiosk_training_center/pages/cart/widgets/payment_pop_up.dart';
 import 'package:kiosk_training_center/pages/cart/widgets/total_price.dart';
 import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
+import 'package:kiosk_training_center/pages/select_people_and_method/select_people_and_method_provider.dart';
 import 'package:provider/provider.dart';
 
 class CartPage extends StatefulWidget {
@@ -28,6 +29,7 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var provider =  context.watch<MenuProvider>();
+    var selectProvider =  context.watch<SelectPeopleAndMethodProvider>();
 
     return Container(
       decoration: BoxDecoration(
@@ -67,8 +69,21 @@ class _CartPageState extends State<CartPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          MyButton(onTap: () => Navigator.of(context).pop(), title: "뒤로가기", width: size.width * 0.1, height: size.height * 0.06, fontSize: size.width * 0.02),
-                          MyButton(onTap: () => showPaymentPopUp(), title: "결제하기", width: size.width * 0.1, height: size.height * 0.06, fontSize: size.width * 0.02)
+                          MyButton(onTap: () {
+                            selectProvider.state.player.stop();
+                            selectProvider.state.isPlayedAudio = false;
+                            selectProvider.state.player2.stop();
+                            selectProvider.state.isPlayedAudio2 = false;
+                            Navigator.of(context).pop();
+                          },
+                              title: "뒤로가기", width: size.width * 0.1, height: size.height * 0.06, fontSize: size.width * 0.02),
+                          MyButton(onTap: () {
+                            selectProvider.state.player.stop();
+                            selectProvider.state.isPlayedAudio = false;
+                            selectProvider.state.player2.stop();
+                            selectProvider.state.isPlayedAudio2 = false;
+                            showPaymentPopUp();
+                          }, title: "결제하기", width: size.width * 0.1, height: size.height * 0.06, fontSize: size.width * 0.02)
                         ],
                       ),
                     ),

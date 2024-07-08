@@ -8,6 +8,7 @@ import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
 import 'package:kiosk_training_center/pages/menu/project_info/project_info_page.dart';
 import 'package:kiosk_training_center/pages/menu/usage_info/usage_info_page.dart';
 import 'package:kiosk_training_center/pages/menu/widgets/menu_button.dart';
+import 'package:kiosk_training_center/pages/select_people_and_method/select_people_and_method_provider.dart';
 import 'package:provider/provider.dart';
 
 class MenuPage extends StatefulWidget {
@@ -41,6 +42,7 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var provider =  context.watch<MenuProvider>();
+    var selectProvider =  context.watch<SelectPeopleAndMethodProvider>();
 
     return BasePage(
           audioPath: provider.state.currentPage > 1 ? 'assets/audios/fourth.mp3' : 'assets/audios/third.mp3',
@@ -73,7 +75,13 @@ class _MenuPageState extends State<MenuPage> {
                     ),
 
                     MenuButton(
-                      onTap: () => showCart(),
+                      onTap: () {
+                        selectProvider.state.player.stop();
+                        selectProvider.state.isPlayedAudio = false;
+                        selectProvider.state.player2.stop();
+                        selectProvider.state.isPlayedAudio2 = false;
+                        showCart();
+                      },
                       text:  '장바구니',
                       selected:  false,
                     )
@@ -85,7 +93,13 @@ class _MenuPageState extends State<MenuPage> {
                   physics: provider.state.currentPage == 0 || provider.state.currentPage == 1 ? NeverScrollableScrollPhysics(): AlwaysScrollableScrollPhysics(),
                   controller: provider.state.pageController,
                   scrollDirection: Axis.vertical,
-                  onPageChanged: (value) => provider.selectPage(value.floor()),
+                  onPageChanged: (value) {
+                    selectProvider.state.player.stop();
+                    selectProvider.state.isPlayedAudio = false;
+                    selectProvider.state.player2.stop();
+                    selectProvider.state.isPlayedAudio2 = false;
+                    provider.selectPage(value.floor());
+                  },
                   children: [
                     ProjectInfoPage(),
                     UsageInfoPage(),

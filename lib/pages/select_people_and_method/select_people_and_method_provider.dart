@@ -21,6 +21,13 @@ class SelectPeopleAndMethodProvider extends ChangeNotifier {
       }
     });
 
+    state.player2.playerStateStream.listen((playerState) {
+      if (playerState.processingState == ProcessingState.completed) {
+        state.isPlayedAudio2 = false;
+        notifyListeners();
+      }
+    });
+
     notifyListeners();
   }
 
@@ -41,7 +48,8 @@ class SelectPeopleAndMethodProvider extends ChangeNotifier {
     if(state.selected && state.count > 0) {
       state.player.stop();
       state.isPlayedAudio = false;
-      GoRouter.of(context).pushNamed("menu", extra: state.count);
+      state.isPlayedAudio2 = false;
+      GoRouter.of(context).goNamed("menu", extra: state.count);
     }
   }
 
@@ -60,6 +68,20 @@ class SelectPeopleAndMethodProvider extends ChangeNotifier {
       await state.player.setVolume(1.0);
       await state.player.play();
     }
+    notifyListeners();
+  }
+
+  Future<void> playAudio2() async {
+    state.isPlayedAudio2 = !state.isPlayedAudio2;
+
+    if(!state.isPlayedAudio2) {
+      await state.player2.stop();
+    } else {
+      await state.player2.setAsset('assets/audios/bell.mp3');
+      await state.player2.setVolume(1.0);
+      await state.player2.play();
+    }
+    notifyListeners();
   }
 
   void baseDispose() {

@@ -53,51 +53,55 @@ class _CountDownPageState extends State<CountDownPage> {
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: size.height * 0.15, horizontal: size.width * 0.1),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                      fontSize: size.width * 0.05,
-                      color: Colours.pink5,
-                      fontFamily: MyTextStyle.dungGeunMo,
-                      letterSpacing: 4,
-                      wordSpacing: 3,
-                        height: 1.5
-                    ),
-                    children: const <TextSpan>[
-                      TextSpan(text: '영상이 '),
-                      TextSpan(
-                        text: '10초 ',
+              Column(
+                children: [
+                  RichText(
+                      text: TextSpan(
                         style: TextStyle(
-                          color: Colours.green5,
+                          fontSize: size.width * 0.05,
+                          color: Colours.pink5,
+                          fontFamily: MyTextStyle.dungGeunMo,
+                          letterSpacing: 4,
+                          wordSpacing: 3,
+                            height: 1.5
                         ),
-                      ),
-                      TextSpan(text: '뒤 시작 됩니다.'),
-                    ],
-                  ),),
-              // SizedBox(height: size.height * 0.08),
-              RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  style: TextStyle(
-                      fontSize: size.width * 0.05,
-                      color: Colours.pink5,
-                      fontFamily: MyTextStyle.dungGeunMo,
-                      letterSpacing: 4,
-                      wordSpacing: 3,
-                      height: 1.5
-                  ),
-                  children: const <TextSpan>[
-                    TextSpan(
-                      text: '헤드폰 착용 후 ',
+                        children: const <TextSpan>[
+                          TextSpan(text: '영상이 '),
+                          TextSpan(
+                            text: '10초 ',
+                            style: TextStyle(
+                              color: Colours.green5,
+                            ),
+                          ),
+                          TextSpan(text: '뒤 시작 됩니다.'),
+                        ],
+                      ),),
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
                       style: TextStyle(
-                        color: Colours.blue3,
+                          fontSize: size.width * 0.05,
+                          color: Colours.pink5,
+                          fontFamily: MyTextStyle.dungGeunMo,
+                          letterSpacing: 4,
+                          wordSpacing: 3,
+                          height: 1.5
                       ),
-                    ),
-                    TextSpan(text: '관람해 주시기 바랍니다.')
-                  ],
-                ),),
-              SizedBox(height: size.height * 0.15),
+                      children: const <TextSpan>[
+                        TextSpan(
+                          text: '헤드폰 착용 후 ',
+                          style: TextStyle(
+                            color: Colours.blue3,
+                          ),
+                        ),
+                        TextSpan(text: '관람해 주시기 바랍니다.')
+                      ],
+                    ),)
+                ],
+              ),
+              // SizedBox(height: size.height * 0.15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: count.asMap().entries.map((entry) {
