@@ -78,7 +78,12 @@ class MenuProvider extends ChangeNotifier {
         caption: work.caption,
         price: 3);
 
-     state.cartList.add(cart);
+    var contained = state.cartList.where((element) => element.workName == cart.workName);
+
+    if(contained.isEmpty) {
+      state.cartList.add(cart);
+
+    }
 
      notifyListeners();
   }
@@ -96,6 +101,15 @@ class MenuProvider extends ChangeNotifier {
   int countCartList(String menu) {
       var sameList = state.cartList.where((element) => element.authorName == menu).toList();
       return sameList.length;
+  }
+
+  void reorderCart(int oldIndex, int newIndex) {
+    if (newIndex > oldIndex) {
+      newIndex -= 1;
+    }
+    final item = state.cartList.removeAt(oldIndex);
+    state.cartList.insert(newIndex, item);
+    notifyListeners();
   }
 
   void nextPaymentStep() {

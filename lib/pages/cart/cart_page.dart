@@ -52,6 +52,18 @@ class _CartPageState extends State<CartPage> {
               : CustomScrollView(
                 slivers: [
                   GridArea(),
+                  if(provider.state.cartList.length % 2 != 0)
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: size.width * 0.03),
+                      child: CustomPaint(
+                        painter: DashedLinePainter(),
+                        child: Container(
+                          width: double.infinity,
+                          height: 2),
+                      ),
+                    ),
+                  ),
                   ListArea(),
                   SliverPadding(
                     padding: EdgeInsets.symmetric(horizontal: size.width * 0.07),
@@ -108,6 +120,33 @@ class _CartPageState extends State<CartPage> {
 }
 
 
+class DashedLinePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colours.red
+      ..strokeWidth = 2
+      ..style = PaintingStyle.stroke;
+
+    const dashWidth = 4.0;
+    const dashSpace = 3.0;
+    double startX = 0;
+    final path = Path();
+
+    while (startX < size.width) {
+      path.moveTo(startX, size.height);
+      path.lineTo(startX + dashWidth, size.height);
+      startX += dashWidth + dashSpace;
+    }
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
+  }
+}
 
 
 
