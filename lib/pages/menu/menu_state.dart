@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:kiosk_training_center/dto/author.dart';
 import 'package:kiosk_training_center/dto/cart.dart';
 import 'package:kiosk_training_center/dto/work.dart';
+import 'dart:ui' as ui;
+
 
 class MenuState {
   int currentPage = 0;
@@ -96,5 +98,5 @@ class MenuState {
   /// 장바구니 결제용
   int currentPaymentStep = 0;
   bool clickedFirstStep = false;
-  Uint8List? signByte;
+  ui.Image? signByte;
 }

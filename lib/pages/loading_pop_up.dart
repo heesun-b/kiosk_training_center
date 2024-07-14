@@ -26,7 +26,7 @@ class LoadingPopUp extends StatelessWidget {
                     width: 180,
                     height: 65,
                     alignment: Alignment.center,
-                    child: Text("Hall 1",style: TextStyle(fontFamily: MyTextStyle.computersetak, fontSize: size.width * 0.02, fontWeight: FontWeight.w800, color: Colours.black, decoration: TextDecoration.none)))),
+                    child: Text("Hall",style: TextStyle(fontFamily: MyTextStyle.computersetak, fontSize: size.width * 0.02, fontWeight: FontWeight.w800, color: Colours.black, decoration: TextDecoration.none)))),
             Positioned(
               top: size.height * 0.05,
               left: size.width * 0.02,
@@ -37,7 +37,7 @@ class LoadingPopUp extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50)
                       ),
-                    onPressed: () => context.pop(),
+                    onPressed: () => GoRouter.of(context).goNamed("start"),
                     color: Colours.white,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -49,28 +49,28 @@ class LoadingPopUp extends StatelessWidget {
               ),
             ),
 
-          Align(
-            alignment: Alignment.center,
-            child: Column(
-              children: [
-                MyButton(onTap: (){
-                  PrintSDKUtil.openPrint.call();
-                }, title: "연결", width: 200, height: 100, fontSize: 15),
-                MyButton(onTap: (){
-                  PrintSDKUtil.printExport.call();
-                }, title: "인쇄", width: 200, height: 100, fontSize: 15),
-                MyButton(onTap:() {
-                  PrintSDKUtil.cutPaper.call();
-                }, title: "컷", width: 200, height: 100, fontSize: 15),
-                MyButton(onTap:() {
-                  PrintSDKUtil.printClose.call();
-                }, title: "종료", width: 200, height: 100, fontSize: 15),
-                MyButton(onTap:() {
-                  PrintSDKUtil.initializePrinter.call();
-                }, title: "초기화", width: 200, height: 100, fontSize: 15),
-              ],
-            ),
-          )
+          // Align(
+          //   alignment: Alignment.center,
+          //   child: Column(
+          //     children: [
+          //       MyButton(onTap: (){
+          //         PrintSDKUtil.openPrint.call();
+          //       }, title: "연결", width: 200, height: 100, fontSize: 15),
+          //       MyButton(onTap: (){
+          //         PrintSDKUtil.printExport.call();
+          //       }, title: "인쇄", width: 200, height: 100, fontSize: 15),
+          //       MyButton(onTap:() {
+          //         PrintSDKUtil.cutPaper.call();
+          //       }, title: "컷", width: 200, height: 100, fontSize: 15),
+          //       MyButton(onTap:() {
+          //         PrintSDKUtil.printClose.call();
+          //       }, title: "종료", width: 200, height: 100, fontSize: 15),
+          //       MyButton(onTap:() {
+          //         PrintSDKUtil.initializePrinter.call();
+          //       }, title: "초기화", width: 200, height: 100, fontSize: 15),
+          //     ],
+          //   ),
+          // )
         ]
       );
   }

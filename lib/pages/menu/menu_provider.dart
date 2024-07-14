@@ -4,6 +4,7 @@ import 'package:kiosk_training_center/dto/author.dart';
 import 'package:kiosk_training_center/dto/cart.dart';
 import 'package:kiosk_training_center/dto/work.dart';
 import 'package:kiosk_training_center/pages/menu/menu_state.dart';
+import 'dart:ui' as ui;
 
 class MenuProvider extends ChangeNotifier {
   MenuState state = MenuState();
@@ -123,7 +124,7 @@ class MenuProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void saveSign(sign) {
+  void saveSign(ui.Image sign) {
     state.signByte = sign;
     notifyListeners();
   }

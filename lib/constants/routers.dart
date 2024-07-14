@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:kiosk_training_center/dto/cart.dart';
 import 'package:kiosk_training_center/pages/count_down/count_down_page.dart';
+import 'package:kiosk_training_center/pages/loading_pop_up.dart';
 import 'package:kiosk_training_center/pages/menu/menu_page.dart';
 import 'package:kiosk_training_center/pages/select_people_and_method/select_people_and_method_page.dart';
 import 'package:kiosk_training_center/pages/start/start_page.dart';
@@ -13,10 +14,17 @@ class Routers {
     routes: <RouteBase>[
       GoRoute(
         path: '/',
+        name: 'loading',
+        builder: (_, __) {
+          // return const StartPage();
+          return const LoadingPopUp();
+        },
+      ),
+      GoRoute(
+        path: '/start',
         name: 'start',
         builder: (_, __) {
           return const StartPage();
-          // return const LoadingPopUp();
         },
       ),
       GoRoute(

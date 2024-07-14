@@ -5,6 +5,8 @@ import 'package:kiosk_training_center/constants/my_text_style.dart';
 import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
+import 'dart:ui' as ui;
+
 
 class PaymentThirdStep extends StatefulWidget {
   const PaymentThirdStep({super.key});
@@ -22,11 +24,14 @@ class _PaymentThirdStepState extends State<PaymentThirdStep> {
 
   Future<void> _handleSaveButtonPressed() async {
     // var provider =  context.watch<MenuProvider>();
-    // final data = await signatureGlobalKey.currentState!.toImage(pixelRatio: 3.0);
+
+    ui.Image image  = await signatureGlobalKey.currentState!.toImage(pixelRatio: 3.0);
     // final bytes = await data.toByteData(format: ui.ImageByteFormat.png);
     // provider.saveSign(bytes!.buffer.asUint8List());
 
+    Provider.of<MenuProvider>(context, listen: false).saveSign(image);
     Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
+
   }
 
   @override
