@@ -28,7 +28,7 @@ class MenuState {
               enName: 'Zeros: Operation Errors',
               caption: '2020, 2채널 비디오의 단채널 버전, 컬러, 사운드, 13분 20초',
               imagePath: 'assets/images/works/zeros_operation_errors.png',
-              videoPath: 'https://firebasestorage.googleapis.com/v0/b/grow-maps-platform.appspot.com/o/temp%2Fstrange%20house_pre%20sound%20remaster.mp4?alt=media&token=148f933c-d7d2-4df3-aa2f-aa5b88117a41',
+              videoPath: 'https://firebasestorage.googleapis.com/v0/b/grow-maps-platform.appspot.com/o/temp%2F42-english_32%E1%84%83%E1%85%A29%E1%84%87%E1%85%B5%E1%84%8B%E1%85%B2%E1%86%AF2.mp4?alt=media&token=bed6d050-da8c-4877-a980-d3f05b79f864',
               infoPath: 'assets/textfiles/work_zeros_operation_errors.txt')]
     ),
     Author(

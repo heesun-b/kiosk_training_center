@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:kiosk_training_center/common_widgets/my_button.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/my_text_style.dart';
@@ -6,7 +8,9 @@ import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
 import 'package:provider/provider.dart';
 
 class PaymentFirstStep extends StatelessWidget {
-  const PaymentFirstStep({super.key});
+  AudioPlayer audioPlayer;
+
+  PaymentFirstStep({super.key, required this.audioPlayer});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +22,7 @@ class PaymentFirstStep extends StatelessWidget {
       builder: (context, _, child) {
       return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text("결제방법", style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.055, color: Colours.darkGrey, letterSpacing: 3, decoration: TextDecoration.none)),
             GestureDetector(
@@ -36,7 +41,17 @@ class PaymentFirstStep extends StatelessWidget {
                 child: Text("키오스크 트레이닝 센터\n전용 카드 사용", style: TextStyle(color: Colours.red, fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.015, decoration: TextDecoration.none, letterSpacing: 2, wordSpacing: 2, height: 1.5),textAlign: TextAlign.center),
               ),
             ),
-            MyButton(onTap: provider.state.clickedFirstStep ? () => provider.nextPaymentStep(): (){}, title: "선택", width: size.width * 0.09, height: size.height * 0.07, fontSize: size.width *0.025)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                MyButton(onTap: provider.state.clickedFirstStep ? () => provider.nextPaymentStep(): (){}, title: "선택", width: size.width * 0.09, height: size.height * 0.07, fontSize: size.width *0.025),
+                SizedBox(width: 32),
+                MyButton(onTap:  () {
+                  audioPlayer.stop();
+                  context.pop();
+                }, title: "취소", width: size.width * 0.09, height: size.height * 0.07, fontSize: size.width *0.025),
+              ],
+            )
           ],
         );
       },

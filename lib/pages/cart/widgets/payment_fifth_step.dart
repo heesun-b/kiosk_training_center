@@ -24,7 +24,7 @@ class _PaymentFifthStepState extends State<PaymentFifthStep> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       timer = Timer(const Duration(seconds: 3), () {
-        GoRouter.of(context).pushNamed("count_down", extra: Provider.of<MenuProvider>(context, listen: false).state.cartList,);
+        GoRouter.of(context).goNamed("count_down", extra: Provider.of<MenuProvider>(context, listen: false).state.cartList,);
       });
     });
   }

@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:kiosk_training_center/pages/menu/menu_page.dart';
 import 'package:kiosk_training_center/pages/select_people_and_method/select_people_and_method_state.dart';
 
 class SelectPeopleAndMethodProvider extends ChangeNotifier {
-  final state = SelectPeopleAndMethodState();
+  SelectPeopleAndMethodState state = SelectPeopleAndMethodState();
 
   void init() {
     state.count = 0;
@@ -49,7 +50,9 @@ class SelectPeopleAndMethodProvider extends ChangeNotifier {
       state.player.stop();
       state.isPlayedAudio = false;
       state.isPlayedAudio2 = false;
+      notifyListeners();
       GoRouter.of(context).goNamed("menu", extra: state.count);
+      // GoRouter.of(context).replaceNamed("menu", extra: state.count);
     }
   }
 

@@ -6,10 +6,11 @@ import 'package:kiosk_training_center/dto/work.dart';
 import 'package:kiosk_training_center/pages/menu/menu_state.dart';
 
 class MenuProvider extends ChangeNotifier {
-  final state = MenuState();
+  MenuState state = MenuState();
 
   void init(int peopleCount) {
     state.peopleCount = peopleCount;
+    state.cartList = [];
 
     ///
     state.scrollController1.addListener(() {
@@ -104,9 +105,9 @@ class MenuProvider extends ChangeNotifier {
   }
 
   void reorderCart(int oldIndex, int newIndex) {
-    if (newIndex > oldIndex) {
-      newIndex -= 1;
-    }
+    // if (newIndex > oldIndex) {
+    //   newIndex -= 1;
+    // }
     final item = state.cartList.removeAt(oldIndex);
     state.cartList.insert(newIndex, item);
     notifyListeners();

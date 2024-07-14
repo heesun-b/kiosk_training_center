@@ -3,12 +3,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiosk_training_center/dto/cart.dart';
+import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
+import 'package:kiosk_training_center/pages/menu/menu_state.dart';
 import 'package:kiosk_training_center/pages/select_people_and_method/select_people_and_method_page.dart';
+import 'package:kiosk_training_center/pages/select_people_and_method/select_people_and_method_provider.dart';
+import 'package:kiosk_training_center/pages/select_people_and_method/select_people_and_method_state.dart';
 import 'package:kiosk_training_center/pages/video/video_state.dart';
+import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoProvider extends ChangeNotifier {
-  final state = VideoState();
+  VideoState state = VideoState();
 
   void init(List<Cart> list) {
     state.cartList = list;
@@ -58,7 +63,7 @@ class VideoProvider extends ChangeNotifier {
         ..initialize().then((_) {
           state.controller.play();
         });
-      Future.delayed(Duration(milliseconds: 100), () {
+      Future.delayed(const Duration(milliseconds: 100), () {
         state.initialized = true;
         notifyListeners();
       });
@@ -66,6 +71,11 @@ class VideoProvider extends ChangeNotifier {
   }
 
   void endVideo(BuildContext context) {
-    GoRouter.of(context).go('/');
+    state = VideoState();
+    var menuProvider = Provider.of<MenuProvider>(context, listen: false);
+    menuProvider.state = MenuState();
+    var selectPeopleAndMethodProvider = Provider.of<SelectPeopleAndMethodProvider>(context, listen: false);
+    selectPeopleAndMethodProvider.state = SelectPeopleAndMethodState();
+    context.replace('/');
   }
 }

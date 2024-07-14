@@ -53,7 +53,7 @@ class _PaymentPopUpState extends State<PaymentPopUp> {
               decoration: const BoxDecoration(
                 color: Colours.background,
               ),
-              child: provider.state.currentPaymentStep == 0 ? PaymentFirstStep() :
+              child: provider.state.currentPaymentStep == 0 ? PaymentFirstStep(audioPlayer: player) :
               provider.state.currentPaymentStep == 1 ? PaymentSecondStep() :
               provider.state.currentPaymentStep == 2 ? PaymentThirdStep() :
               provider.state.currentPaymentStep == 3 ? PaymentFourthStep() : PaymentFifthStep()
