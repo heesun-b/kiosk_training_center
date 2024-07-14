@@ -4,28 +4,16 @@ import 'package:kiosk_training_center/constants/routers.dart';
 import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
 import 'package:kiosk_training_center/pages/select_people_and_method/select_people_and_method_provider.dart';
 import 'package:kiosk_training_center/pages/video/video_provider.dart';
+import 'package:kiosk_training_center/sle_memory_card.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player_media_kit/video_player_media_kit.dart';
-import 'dart:ffi'; // For FFIimport 'dart:io';
-import 'package:ffi/ffi.dart';
-
-typedef PrinterOpenFunc = Int64 Function(Int32, Pointer<Utf8>, Int32, Int32, Int32, Int32, Int32);
-typedef PrinterOpen = int Function(int, Pointer<Utf8>, int, int, int, int, int);
 
 void main() {
 
-  final DynamicLibrary func = DynamicLibrary.open('assets/lib/BXLPAPI.dll');
-  final printerOpen = func.lookupFunction<PrinterOpenFunc, PrinterOpen>('PrinterOpen');
 
-  // Example call with parameters similar to your C++ example
-  String printerName = ''; // Replace with your printer
-  int lResult = printerOpen(2, printerName.toNativeUtf8(), 0, 0, 0, 0, 0);
-
-  print('PrinterOpen result: $lResult');
-
-  // Free memory allocated by Utf8.toUtf8
-  // printerNamePtr.free();
-
+  init();
+  // var connect = sleMemoryCard.connect("ACS ACR39U ICC Reader 0", "");
+  // print(connect);
   VideoPlayerMediaKit.ensureInitialized(
     android: true,          // default: false    -    dependency: media_kit_libs_android_video
     iOS: true,              // default: false    -    dependency: media_kit_libs_ios_video

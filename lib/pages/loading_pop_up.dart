@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kiosk_training_center/PrintSDKUtil.dart';
+import 'package:kiosk_training_center/common_widgets/my_button.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/my_text_style.dart';
+import 'package:kiosk_training_center/main.dart';
 
 class LoadingPopUp extends StatelessWidget {
   const LoadingPopUp({super.key});
@@ -43,7 +47,30 @@ class LoadingPopUp extends StatelessWidget {
                       ],
                     ),),
               ),
-            )
+            ),
+
+          Align(
+            alignment: Alignment.center,
+            child: Column(
+              children: [
+                MyButton(onTap: (){
+                  PrintSDKUtil.openPrint.call();
+                }, title: "연결", width: 200, height: 100, fontSize: 15),
+                MyButton(onTap: (){
+                  PrintSDKUtil.printExport.call();
+                }, title: "인쇄", width: 200, height: 100, fontSize: 15),
+                MyButton(onTap:() {
+                  PrintSDKUtil.cutPaper.call();
+                }, title: "컷", width: 200, height: 100, fontSize: 15),
+                MyButton(onTap:() {
+                  PrintSDKUtil.printClose.call();
+                }, title: "종료", width: 200, height: 100, fontSize: 15),
+                MyButton(onTap:() {
+                  PrintSDKUtil.initializePrinter.call();
+                }, title: "초기화", width: 200, height: 100, fontSize: 15),
+              ],
+            ),
+          )
         ]
       );
   }
