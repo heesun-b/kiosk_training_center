@@ -17,12 +17,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   // plugins.
   ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
 
-    // DLL 파일 로드
-    HINSTANCE hInstLibrary = LoadLibrary(TEXT("SLE Memory Card Programming.dll"));
-    if (!hInstLibrary) {
-      std::cerr << "Could not load the DLL" << std::endl;
-      return EXIT_FAILURE;
-    }
+
 
   flutter::DartProject project(L"data");
 
