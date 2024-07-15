@@ -125,7 +125,7 @@ class MenuProvider extends ChangeNotifier {
   }
 
   void saveSign(ui.Image sign) {
-    state.signByte = sign;
+    state.signImage = sign;
     notifyListeners();
   }
 }

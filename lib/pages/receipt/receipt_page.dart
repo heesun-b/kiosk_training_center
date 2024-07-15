@@ -1,16 +1,52 @@
+import 'dart:async';
+import 'dart:ui' as ui;
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/my_text_style.dart';
+import 'package:kiosk_training_center/dto/cart.dart';
 import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
+import 'package:kiosk_training_center/pages/receipt/widgets/date_area.dart';
+import 'package:kiosk_training_center/pages/receipt/widgets/signature_area.dart';
+import 'package:kiosk_training_center/pages/receipt/widgets/title_area.dart';
+import 'package:kiosk_training_center/pages/receipt/widgets/work_info_area.dart';
 import 'package:provider/provider.dart';
 
-class ReceiptPage extends StatelessWidget {
+class ReceiptPage extends StatefulWidget {
   const ReceiptPage({super.key});
+
+  @override
+  State<ReceiptPage> createState() => _ReceiptPageState();
+}
+
+class _ReceiptPageState extends State<ReceiptPage> {
+  ui.Image? image;
+  // List<Cart> cartList = [];
+  List<Cart> cartList = [
+    Cart(
+        authorName: '전보경',
+        workName: 'Zeros: 오류의 동작',
+        caption: '2020, 2채널 비디오의 단채널 버전, 컬러, 사운드, 13분 20초',
+        workImage: 'assets/images/works/zeros_operation_errors.png',
+        workVideo: '',
+        price: 3)
+  ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      image = Provider.of<MenuProvider>(context, listen: false).state.signImage;
+      // cartList = Provider.of<MenuProvider>(context, listen: false).state.cartList;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var provider = context.watch<MenuProvider>();
 
     return Scaffold(
       backgroundColor: Colours.white,
@@ -19,67 +55,17 @@ class ReceiptPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-               Container(
-                 margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
-                 padding:  EdgeInsets.symmetric(horizontal: size.width * 0.01, vertical: size.height * 0.015),
-                 width: double.infinity,
-                 height: size.height * 0.4,
-                 decoration: BoxDecoration(
-                   border: Border.all(
-                     color: Colours.black,
-                     width: 3
-                   ),
-                 ),
-                 child: Container(
-                   width: double.infinity,
-                   height: size.height * 0.4,
-                   decoration: BoxDecoration(
-                     border: Border.all(
-                         color: Colours.black,
-                         width: 2
-                     ),
-                   ),
-                   alignment: Alignment.center,
-                   child: Column(
-                     mainAxisAlignment: MainAxisAlignment.center,
-                     children: [
-                       Text(
-                         "Kiosk Training Center",
-                         style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.05),
-                       ),
-                       Text(
-                         "키오스크 트레이닝 센터",
-                         style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.05),
-                       ),
-                     ],
-                   ),
-                 ),
-               ),
+              TitleArea(),
+              DateArea(),
+              WorkInfoArea(cart: cartList[0]),
+              SignatureArea(cart: cartList[0], image: image),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: size.height * 0.1),
-                child: Text(
-                  nowDate(),
-                  style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.03),
-                ),
-              ),
-              CustomPaint(
-                painter: DashedLinePainter(),
-                child: SizedBox(
-                  width: size.width * 0.9,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: size.height * 0.2),
-                child: SizedBox(
-                    width: size.width * 0.7,
-                    height: size.height * 0.7,
-                    child: ColorFiltered(
-                        colorFilter:  const ColorFilter.mode(
-                          Colors.grey,
-                          BlendMode.saturation,
-                        ),
-                        child: Image.asset("assets/images/works/zeros_operation_errors.png", fit: BoxFit.fill))),
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.1, horizontal: size.width * 0.045),
+                child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Image.asset('assets/images/qr_sample.png', height: size.height * 0.3)),
               )
+
             ],
           ),
         ),
@@ -88,20 +74,7 @@ class ReceiptPage extends StatelessWidget {
   }
 }
 
-String nowDate() {
-  var dateTime = DateTime.now();
-  const weekDays = ['월', '화', '수', '목', '금', '토', '일'];
-  String weekDay = weekDays[dateTime.weekday - 1];
-
-  String period = dateTime.hour < 12 ? '오전' : '오후';
-  int hour = dateTime.hour % 12;
-  if (hour == 0) hour = 12;
-  String minute = dateTime.minute.toString().padLeft(2, '0');
-
-  return '${dateTime.year}. ${dateTime.month}. ${dateTime.day} ($weekDay) $period $hour시 $minute분';
-}
-
-class DashedLinePainter extends CustomPainter {
+class ReceiptDashedLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
@@ -132,3 +105,4 @@ class MyCustomScrollBehavior extends ScrollBehavior {
     return child;  // ScrollBar를 숨기기 위해 child를 그대로 반환
   }
 }
+

@@ -98,5 +98,5 @@ class MenuState {
   /// 장바구니 결제용
   int currentPaymentStep = 0;
   bool clickedFirstStep = false;
-  ui.Image? signByte;
+  ui.Image? signImage;
 }
