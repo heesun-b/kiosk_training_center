@@ -37,7 +37,7 @@ class _PaymentSecondStepState extends State<PaymentSecondStep>{
           // SnackBar(content: Text(e.toString()), backgroundColor: Colours.red,)
           // );
         }
-        if (i > 100) {
+        if (i > 30) {
           timer.cancel();
           scaffoldMessengerKey.currentState?.showSnackBar(
               const SnackBar(content: Text("결제를 실패했습니다."), backgroundColor: Colours.red,)

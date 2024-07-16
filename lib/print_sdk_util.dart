@@ -21,20 +21,19 @@ typedef InitializePrinterFunc = Int64 Function();
 typedef InitializePrinter = int Function();
 
 class PrintSDKUtil {
-  static final DynamicLibrary func = DynamicLibrary.open('assets/lib/BXLPAPI_x64.dll');
+  static final DynamicLibrary func = DynamicLibrary.open('C:/Windows/SysWOW64/BXLPAPI_x64.dll');
 
   static bool openPrint() {
     final printerOpen = func.lookupFunction<PrinterOpenFunc, PrinterOpen>('PrinterOpen');
-    // Example call with parameters similar to your C++ example
     String printerName = ''; // Replace with your printer
     int lResult = printerOpen(2, printerName.toNativeUtf8(), 0, 0, 0, 0, 0);
-    // windows snackbar
-    scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
-      content: Text('lResult: $lResult'),
-    ));
+
     if (lResult == 0) {
       return true;
     } else {
+      scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
+        content: Text('lResult: $lResult'),
+      ));
       return false;
     }
   }
@@ -42,12 +41,12 @@ class PrintSDKUtil {
   static bool printExport(String filePath) {
     final printBitmap = func.lookupFunction<PrintBitmapFunc, PrintBitmap>('PrintBitmap');
     int bResult = printBitmap(filePath.toNativeUtf8(), -1, 1, 30, false);
-    scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
-      content: Text("bResult: $bResult"),
-    ));
     if (bResult == 0) {
       return true;
     } else {
+      scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
+        content: Text("bResult: $bResult"),
+      ));
       return false;
     }
   }
@@ -55,12 +54,13 @@ class PrintSDKUtil {
   static bool cutPaper() {
     final cutPaper = func.lookupFunction<CutPaperFunc, CutPaper>('CutPaper');
     int cResult = cutPaper();
-    scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
-      content: Text("cResult: $cResult"),
-    ));
+
     if (cResult == 0) {
       return true;
     } else {
+      scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
+        content: Text("cResult: $cResult"),
+      ));
       return false;
     }
   }
@@ -68,12 +68,13 @@ class PrintSDKUtil {
   static bool printClose() {
     final printClose = func.lookupFunction<PrinterCloseFunc, PrinterClose>('PrinterClose');
     int pcResult = printClose();
-    scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
-      content: Text("pcResult: $pcResult"),
-    ));
+
     if (pcResult == 0) {
       return true;
     } else {
+      // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
+      //   content: Text("pcResult: $pcResult"),
+      // ));
       return false;
     }
   }
@@ -81,12 +82,12 @@ class PrintSDKUtil {
   static bool initializePrinter() {
     final initializePrinter = func.lookupFunction<InitializePrinterFunc, InitializePrinter>('InitializePrinter');
     int iPResult = initializePrinter();
-    scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
-      content: Text("iPResult: $iPResult"),
-    ));
     if (iPResult == 0) {
       return true;
     } else {
+      // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
+      //   content: Text("iPResult: $iPResult"),
+      // ));
       return false;
     }
   }

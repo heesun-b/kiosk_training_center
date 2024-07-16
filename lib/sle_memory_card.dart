@@ -106,7 +106,7 @@ List<String> parseMultiString(Pointer<Uint16> multiString) {
 
 bool init() {
   // Load the WinSCard DLL
-  final winSCard = DynamicLibrary.open('winscard.dll'); // Updated DLL name
+  final winSCard = DynamicLibrary.open('C:/Windows/SysWOW64/winscard.dll'); // Updated DLL name
 
   // Look up the SCardEstablishContext function
   final SCardEstablishContextDart SCardEstablishContext = winSCard.lookupFunction<SCardEstablishContextC, SCardEstablishContextDart>('SCardEstablishContext');

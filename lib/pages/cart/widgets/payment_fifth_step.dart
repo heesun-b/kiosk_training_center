@@ -43,7 +43,7 @@ class _PaymentFifthStepState extends State<PaymentFifthStep> {
           PrintSDKUtil.cutPaper();
         }
       });
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 3));
       GoRouter.of(context).goNamed("count_down", extra: Provider.of<MenuProvider>(context, listen: false).state.cartList,);
     });
   }
