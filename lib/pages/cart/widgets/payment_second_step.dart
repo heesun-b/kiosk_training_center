@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/my_text_style.dart';
+import 'package:kiosk_training_center/main.dart';
 import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
 import 'package:kiosk_training_center/sle_memory_card.dart';
 import 'package:provider/provider.dart';
@@ -28,12 +29,12 @@ class _PaymentSecondStepState extends State<PaymentSecondStep>{
         Timer.periodic(const Duration(seconds: 1), (timer) {
           timer.cancel();
           try {
-            if (init(context)) {
+            if (init()) {
               this.timer?.cancel();
               Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
             }
           } catch (e) {
-            ScaffoldMessenger.of(context).showSnackBar(
+            scaffoldMessengerKey.currentState?.showSnackBar(
             SnackBar(content: Text(e.toString()), backgroundColor: Colours.red,)
             );
           }

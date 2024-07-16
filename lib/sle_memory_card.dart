@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kiosk_training_center/main.dart';
 
 // Type definitions for the WinSCard functions and constants.
 typedef SCardEstablishContextC = Int32 Function(
@@ -103,7 +104,7 @@ List<String> parseMultiString(Pointer<Uint16> multiString) {
   return strings;
 }
 
-bool init(BuildContext context) {
+bool init() {
   // Load the WinSCard DLL
   final winSCard = DynamicLibrary.open('assets/lib/winscard.dll'); // Updated DLL name
 
@@ -124,7 +125,7 @@ bool init(BuildContext context) {
   final result = SCardEstablishContext(SCARD_SCOPE_SYSTEM, nullptr, nullptr, phContext);
 
   if (result == SCARD_S_SUCCESS) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
       content: Text('SCardEstablishContext succeeded, context: ${phContext.value}')
     ));
 
@@ -138,7 +139,7 @@ bool init(BuildContext context) {
       if (resultListReaders == SCARD_S_SUCCESS) {
         final readerList = parseMultiString(mszReaders);
 
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
           content: Text('Readers: $readerList')
         ));
 
@@ -196,30 +197,30 @@ bool init(BuildContext context) {
             calloc.free(phContext);
             return true;
           } else {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
               content: Text('SCardConnectW failed, error code: $connectResult')
             ));
           }
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
             content: Text('No readers available to connect.')
           ));
         }
 
         calloc.free(mszReaders);
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
           content: Text('SCardListReadersW failed, error code: $resultListReaders')
         ));
       }
       calloc.free(pcchReaders);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
         content: Text('No readers available to connect.')
       ));
     }
   } else {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
         content: Text('SCardEstablishContext failed, error code: $result')
     ));
   }
