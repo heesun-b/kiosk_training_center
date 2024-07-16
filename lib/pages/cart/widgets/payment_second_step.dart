@@ -23,7 +23,7 @@ class _PaymentSecondStepState extends State<PaymentSecondStep>{
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      timer = Timer(const Duration(seconds: 2), () {
+      timer = Timer(const Duration(seconds: 100), () {
         // 1초 마다 실행
         Timer.periodic(const Duration(seconds: 1), (timer) {
           timer.cancel();
