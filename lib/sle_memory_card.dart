@@ -125,9 +125,9 @@ bool init() {
   final result = SCardEstablishContext(SCARD_SCOPE_SYSTEM, nullptr, nullptr, phContext);
 
   if (result == SCARD_S_SUCCESS) {
-    scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
-      content: Text('SCardEstablishContext succeeded, context: ${phContext.value}')
-    ));
+    // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
+    //   content: Text('SCardEstablishContext succeeded, context: ${phContext.value}')
+    // ));
 
     // Get the list of readers
     final pcchReaders = calloc<Uint32>();
@@ -139,9 +139,9 @@ bool init() {
       if (resultListReaders == SCARD_S_SUCCESS) {
         final readerList = parseMultiString(mszReaders);
 
-        scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
-          content: Text('Readers: $readerList')
-        ));
+        // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
+        //   content: Text('Readers: $readerList')
+        // ));
 
         // Select the first reader for connection (change as needed)
         final readerName = readerList.isNotEmpty ? readerList.first : null;
@@ -197,32 +197,32 @@ bool init() {
             calloc.free(phContext);
             return true;
           } else {
-            scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
-              content: Text('SCardConnectW failed, error code: $connectResult')
-            ));
+            // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
+            //   content: Text('SCardConnectW failed, error code: $connectResult')
+            // ));
           }
         } else {
-          scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
-            content: Text('No readers available to connect.')
-          ));
+          // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
+          //   content: Text('No readers available to connect.')
+          // ));
         }
 
         calloc.free(mszReaders);
       } else {
-        scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
-          content: Text('SCardListReadersW failed, error code: $resultListReaders')
-        ));
+        // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
+        //   content: Text('SCardListReadersW failed, error code: $resultListReaders')
+        // ));
       }
       calloc.free(pcchReaders);
     } else {
-      scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
-        content: Text('No readers available to connect.')
-      ));
+      // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
+      //   content: Text('No readers available to connect.')
+      // ));
     }
   } else {
-    scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
-        content: Text('SCardEstablishContext failed, error code: $result')
-    ));
+    // scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
+    //     content: Text('SCardEstablishContext failed, error code: $result')
+    // ));
   }
 
   // Free allocated memory

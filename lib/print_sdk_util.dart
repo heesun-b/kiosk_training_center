@@ -21,7 +21,7 @@ typedef InitializePrinterFunc = Int64 Function();
 typedef InitializePrinter = int Function();
 
 class PrintSDKUtil {
-  static final DynamicLibrary func = DynamicLibrary.open('BXLPAPI_x64.dll');
+  static final DynamicLibrary func = DynamicLibrary.open('assets/lib/BXLPAPI_x64.dll');
 
   static bool openPrint() {
     final printerOpen = func.lookupFunction<PrinterOpenFunc, PrinterOpen>('PrinterOpen');

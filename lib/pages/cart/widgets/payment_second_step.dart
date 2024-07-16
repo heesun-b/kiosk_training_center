@@ -33,9 +33,9 @@ class _PaymentSecondStepState extends State<PaymentSecondStep>{
             Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
           }
         } catch (e) {
-          scaffoldMessengerKey.currentState?.showSnackBar(
-          SnackBar(content: Text(e.toString()), backgroundColor: Colours.red,)
-          );
+          // scaffoldMessengerKey.currentState?.showSnackBar(
+          // SnackBar(content: Text(e.toString()), backgroundColor: Colours.red,)
+          // );
         }
         if (i > 100) {
           timer.cancel();
