@@ -40,7 +40,7 @@ class PrintSDKUtil {
 
   static bool printExport(String filePath) {
     final printBitmap = func.lookupFunction<PrintBitmapFunc, PrintBitmap>('PrintBitmap');
-    int bResult = printBitmap(filePath.toNativeUtf8(), -1, 1, 30, false);
+    int bResult = printBitmap(filePath.toNativeUtf8(), -1, 1, 30, true);
     if (bResult == 0) {
       return true;
     } else {
