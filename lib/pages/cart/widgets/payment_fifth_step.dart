@@ -35,7 +35,7 @@ class _PaymentFifthStepState extends State<PaymentFifthStep> {
       await Future.delayed(const Duration(seconds: 1));
       var i = 0;
       Provider.of<MenuProvider>(context, listen: false).state.cartList.forEach((cart) async {
-        var capture = await screenshotController.captureFromWidget(receiptPage(cart, Provider.of<MenuProvider>(context, listen: false).state.signImage));
+        var capture = await screenshotController.captureFromLongWidget(InheritedTheme.captureAll(context, Material(child: receiptPage(cart, Provider.of<MenuProvider>(context, listen: false).state.signImage))));
         var filePath = await FileSaver.instance.saveFile(name: '$i.png', bytes: capture);
         i = i + 1;
         await Future.delayed(const Duration(seconds: 1));

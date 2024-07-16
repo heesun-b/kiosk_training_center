@@ -36,7 +36,7 @@ Widget receiptPage(Cart cart, ui.Image? image) {
               ),
               Align(
                   alignment: Alignment.bottomRight,
-                  child: Image.asset('assets/images/qr.jpg', height: 60)),
+                  child: Image.asset('assets/images/qr.jpg', height: 80)),
             ],
           ),
         )
