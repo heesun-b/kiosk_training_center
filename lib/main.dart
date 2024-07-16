@@ -1,4 +1,8 @@
+import 'dart:isolate';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/routers.dart';
 import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
@@ -8,8 +12,7 @@ import 'package:kiosk_training_center/sle_memory_card.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player_media_kit/video_player_media_kit.dart';
 
-void main() {
-
+void main() async {
 
   init();
   // var connect = sleMemoryCard.connect("ACS ACR39U ICC Reader 0", "");

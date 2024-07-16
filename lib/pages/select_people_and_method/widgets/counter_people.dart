@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/criteria_size.dart';
 import 'package:kiosk_training_center/constants/my_text_style.dart';
@@ -26,9 +27,13 @@ class CountPeople extends StatelessWidget {
         Text("참여 인원 선택", style: TextStyle(fontFamily: MyTextStyle.computersetak, fontWeight: FontWeight.w500, fontSize: size.width >= CriteriaSize.widthSize2 ? 30 : 25)),
         Row(
           children: [
+            // GestureDetector(
+            //     onTap: () => provider.minus(),
+            //     child: Image.asset('assets/images/icons/minus_icon.png', width: 20)),
             GestureDetector(
                 onTap: () => provider.minus(),
-                child: Image.asset('assets/images/icons/minus_icon.png', width: 20)),
+                child: const FaIcon(FontAwesomeIcons.minus, shadows: [Shadow(color: Colours.darkGrey, offset: Offset(0.0, 3.0), blurRadius: 3)],)),
+
             // Container(
             //   width: 40,
             //   height: 40,
@@ -67,9 +72,12 @@ class CountPeople extends StatelessWidget {
                         ),
                       ],)),
             ),
+            // GestureDetector(
+            //     onTap: () => provider.add(),
+            //     child: Image.asset('assets/images/icons/add_icon.png', width: 20,)),
             GestureDetector(
                 onTap: () => provider.add(),
-                child: Image.asset('assets/images/icons/add_icon.png', width: 20,)),
+                child: const FaIcon(FontAwesomeIcons.plus, shadows: [Shadow(color: Colours.darkGrey, offset: Offset(0.0, 3.0), blurRadius: 3)],)),
             const SizedBox(width: 25,)
           ],
         )

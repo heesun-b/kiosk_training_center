@@ -27,7 +27,7 @@ class WorksInfoArea extends StatelessWidget {
               author.works.length,
                   (index) => Container(
                     padding: const EdgeInsets.all(5),
-                    margin: const EdgeInsets.only(right: 30, bottom: 10),
+                    margin: const EdgeInsets.only(right: 40, bottom: 10),
                     child: Padding(
                       padding: EdgeInsets.only(bottom: size.height * 0.07),
                       child: Column(
@@ -41,7 +41,7 @@ class WorksInfoArea extends StatelessWidget {
                                   children: [
                                     SizedBox(
                                         width: size.width * 0.35,
-                                        height: size.height * 0.3,
+                                        height: size.height * 0.45,
                                         child: Image.asset(author.works[index].imagePath, fit: BoxFit.fill)),
                                     const SizedBox(height: 5),
                                     SizedBox(
@@ -63,7 +63,7 @@ class WorksInfoArea extends StatelessWidget {
                               builder: (context, snapshot) {
                                 if(snapshot.hasData) {
                                   return Padding(
-                                    padding: const EdgeInsets.only(left: 20),
+                                    padding: const EdgeInsets.only(left: 30),
                                     child: Text(snapshot.data.toString(), style: TextStyle(fontSize: size.width * 0.017, fontFamily: MyTextStyle.humanBeomseok, height: 1.7),textAlign: TextAlign.justify),
                                   );
                                 } else {

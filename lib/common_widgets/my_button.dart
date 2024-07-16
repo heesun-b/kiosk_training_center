@@ -11,8 +11,19 @@ class MyButton extends StatelessWidget {
   final String fontFamily;
   final double radius;
   final bool check;
+  final FontWeight fontWeight;
 
-  const MyButton({super.key, this.radius = 10.0,  this.check = false, this.fontFamily = MyTextStyle.computersetak, required this.onTap, required this.title, required this.width, required this.height, required this.fontSize});
+  const MyButton({
+    super.key,
+    this.radius = 10.0,
+    this.check = false,
+    this.fontFamily = MyTextStyle.computersetak,
+    required this.onTap,
+    required this.title,
+    required this.width,
+    required this.height,
+    required this.fontSize,
+    this.fontWeight = FontWeight.bold});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +46,7 @@ class MyButton extends StatelessWidget {
               )
             ]
         ),
-        child: Text(title, style: TextStyle(color: Colours.black, fontFamily: fontFamily, fontSize: fontSize, decoration: TextDecoration.none),textAlign: TextAlign.center,),
+        child: Text(title, style: TextStyle(fontWeight: fontWeight,color: Colours.black, fontFamily: fontFamily, fontSize: fontSize, decoration: TextDecoration.none),textAlign: TextAlign.center,),
       ),
     );
   }

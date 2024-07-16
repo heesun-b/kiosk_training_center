@@ -12,6 +12,7 @@ class MenuProvider extends ChangeNotifier {
   void init(int peopleCount) {
     state.peopleCount = peopleCount;
     state.cartList = [];
+    state.currentPage = 0;
 
     ///
     state.scrollController1.addListener(() {

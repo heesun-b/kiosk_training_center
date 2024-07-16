@@ -29,7 +29,7 @@ class _ReceiptPageState extends State<ReceiptPage> {
         authorName: '전보경',
         workName: 'Zeros: 오류의 동작',
         caption: '2020, 2채널 비디오의 단채널 버전, 컬러, 사운드, 13분 20초',
-        workImage: 'assets/images/works/zeros_operation_errors.png',
+        workImage: 'assets/images/works/zeros_operation_errors.jpg',
         workVideo: '',
         price: 3)
   ];
@@ -60,10 +60,19 @@ class _ReceiptPageState extends State<ReceiptPage> {
               WorkInfoArea(cart: cartList[0]),
               SignatureArea(cart: cartList[0], image: image),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: size.height * 0.1, horizontal: size.width * 0.045),
-                child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Image.asset('assets/images/qr_sample.png', height: size.height * 0.3)),
+                padding: EdgeInsets.only(top: size.height * 0.1, bottom: size.height * 0.1, right: size.width * 0.02, left: size.width * 0.05),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "@space_ubermensch\nwww.over-man.com",
+                      style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.03),
+                    ),
+                    Align(
+                        alignment: Alignment.centerRight,
+                        child: Image.asset('assets/images/qr.jpg', height: size.height * 0.3)),
+                  ],
+                ),
               )
 
             ],

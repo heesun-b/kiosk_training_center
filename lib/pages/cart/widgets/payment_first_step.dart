@@ -29,7 +29,7 @@ class PaymentFirstStep extends StatelessWidget {
               onTap: () => provider.clickedPaymentFirstButton(),
               child: Container(
                 width: size.width * 0.22,
-                height: size.height * 0.6,
+                height: size.height * 0.55,
                 margin: const EdgeInsets.symmetric(vertical: 10),
                 padding:  const EdgeInsets.only(bottom: 10),
                 alignment: Alignment.bottomCenter,
@@ -44,12 +44,12 @@ class PaymentFirstStep extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                MyButton(onTap: provider.state.clickedFirstStep ? () => provider.nextPaymentStep(): (){}, title: "선택", width: size.width * 0.09, height: size.height * 0.07, fontSize: size.width *0.025),
+                MyButton(onTap: provider.state.clickedFirstStep ? () => provider.nextPaymentStep(): (){}, title: "선택", width: size.width * 0.09, height: size.height * 0.07, fontSize: size.width *0.02, fontWeight: FontWeight.normal,),
                 SizedBox(width: 32),
                 MyButton(onTap:  () {
                   audioPlayer.stop();
                   context.pop();
-                }, title: "취소", width: size.width * 0.09, height: size.height * 0.07, fontSize: size.width *0.025),
+                }, title: "취소", width: size.width * 0.09, height: size.height * 0.07, fontSize: size.width *0.02,  fontWeight: FontWeight.normal),
               ],
             )
           ],

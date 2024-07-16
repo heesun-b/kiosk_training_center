@@ -5,6 +5,7 @@ import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/my_text_style.dart';
 import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:badges/badges.dart' as badges;
 
 class MenuButton extends StatelessWidget {
   final VoidCallback onTap;
@@ -34,11 +35,22 @@ class MenuButton extends StatelessWidget {
           children: [
             if(selected)
             Image.asset('assets/images/mark.png', width: size.width * 0.085),
-            Badge(
-              label: count != null ? Text(count!) : null,
-              backgroundColor: Colours.red,
-              isLabelVisible: count != null && selected ? true : false,
-              offset: Offset(20, -10),
+            badges.Badge(
+              position: badges.BadgePosition.topEnd(top: -10, end: -20),
+              badgeContent: count != null ? Center(child: Text(count!, style: TextStyle(color: Colours.white),)) : null,
+              showBadge:  count != null ? true : false,
+              badgeStyle: badges.BadgeStyle(
+                shape: badges.BadgeShape.circle,
+                badgeColor: Colours.red,
+                borderRadius: BorderRadius.circular(4),
+              ),
+              badgeAnimation: const badges.BadgeAnimation.scale (
+                animationDuration: Duration(milliseconds: 100),
+                colorChangeAnimationDuration: Duration(milliseconds: 100),
+                loopAnimation: false,
+                curve: Curves.fastOutSlowIn,
+                colorChangeAnimationCurve: Curves.easeInCubic,
+              ),
               child: SizedBox(
                 width: size.width * 0.075,
                 child: Column(
@@ -50,7 +62,7 @@ class MenuButton extends StatelessWidget {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

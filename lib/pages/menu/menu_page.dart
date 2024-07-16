@@ -61,7 +61,8 @@ class _MenuPageState extends State<MenuPage> {
                           children: List.generate(
                               5,
                               (index) => MenuButton(
-                                verticalPadding: index == 1 ? 20.0 : 10.0,
+                                // verticalPadding: index == 1 ? 20.0 : 10.0,
+                                verticalPadding: 20.0,
                                 onTap: () => provider.navigateToPage(index),
                                 text: provider.state.menu[index],
                                 selected: provider.state.currentPage == index ? true : false,

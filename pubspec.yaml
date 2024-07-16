@@ -44,6 +44,8 @@ dependencies:
   syncfusion_flutter_signaturepad: ^26.1.40
   lottie: ^3.1.2
   video_player_media_kit: ^1.0.5
+  badges: ^3.1.2
+  font_awesome_flutter: ^10.7.0
 #  screenshot: ^3.0.0
 
 

@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -23,7 +24,6 @@ class _StartPageState extends State<StartPage> {
   @override
   void initState() {
     super.initState();
-
     appbarPlayer.playerStateStream.listen((playerState) {
       if (playerState.processingState == ProcessingState.completed) {
         setState(() {
@@ -49,9 +49,20 @@ class _StartPageState extends State<StartPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colours.main,
+        title: const Padding(
+          padding: EdgeInsets.only(top: 17, bottom: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+               Text("음성 안내가 필요하다면 헤드셋을 낀 뒤 스피커 모양을 눌러주세요."),
+            ],
+          ),
+        ),
+        titleTextStyle: TextStyle(fontFamily: MyTextStyle.dungGeunMo, color: Colours.white, fontSize: size.width * 0.015),
         actions: [
           IconButton(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+
+              padding: const EdgeInsets.only(right: 20, top: 10, bottom: 10),
               onPressed: () {
                 if (isAppbarPlayedAudio) {
                   appbarStopAudio();
@@ -62,7 +73,7 @@ class _StartPageState extends State<StartPage> {
                   isAppbarPlayedAudio = !isAppbarPlayedAudio;
                 });
               },
-              icon: Icon(isAppbarPlayedAudio ? CupertinoIcons.speaker_slash  : CupertinoIcons.speaker_2 , color: Colours.white, size: 30,)),
+              icon: Icon(isAppbarPlayedAudio ? CupertinoIcons.speaker_slash  : CupertinoIcons.speaker_2 , color: Colours.white, size: size.width * 0.025,)),
           Container(
             width: 100,
             padding: const EdgeInsets.all(10),
@@ -96,11 +107,11 @@ class _StartPageState extends State<StartPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
                   margin: const EdgeInsets.only(top: 30),
                   decoration: BoxDecoration(
-                    color: Colours.main,
+                    color: Colours.white,
                     borderRadius: BorderRadius.circular(50),
                     boxShadow: const [
                       BoxShadow(
-                        color: Colours.pinkGrey,
+                        color: Colours.grey,
                         offset: Offset(-1, 5)
                       )
                     ]

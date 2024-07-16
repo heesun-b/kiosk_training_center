@@ -94,7 +94,7 @@ class _BasePageState extends State<BasePage> {
                                     color: Colours.red,
                                     borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10))
                                 ),
-                                child: Text(!widget.forCart ? "HALL 1" : "장바구니", style: TextStyle(fontFamily: MyTextStyle.computersetak, fontSize: size.width * 0.017, fontWeight: FontWeight.w800), textAlign: TextAlign.center,)
+                                child: Text(!widget.forCart ? "HALL 1" : "장바구니", style: TextStyle(fontFamily: MyTextStyle.computersetak, fontSize: size.width * 0.015, fontWeight: FontWeight.w800), textAlign: TextAlign.center,)
                             ),
                           ],
                         )
@@ -132,33 +132,6 @@ class _BasePageState extends State<BasePage> {
               ),
             ],
           )),
-
-
-      floatingActionButton: widget.floatingButtonOnTap != null ? Padding(
-        padding: EdgeInsets.only(right: size.width * 0.03),
-        child: InkWell(
-          onTap: widget.floatingButtonOnTap,
-          child: Container(
-            width: size.width * 0.15,
-            height: size.height * 0.07,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colours.white,
-              border: Border.all(color: Colours.pink1, width: 1.5),
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colours.grey2,
-                  offset: Offset(0.0, 3.0),
-                  blurRadius: 3.0,
-                  spreadRadius: 1.0
-                )
-              ]
-            ),
-            child: const Text("장바구니 담기", style: TextStyle(fontFamily: MyTextStyle.computersetak),textAlign: TextAlign.center,),
-          ),
-        ),
-      ) : null,
     );
   }
 
@@ -183,7 +156,7 @@ class LinePainter extends CustomPainter {
       ..color = Colours.blue
       ..strokeWidth = 0.8;
 
-    for (double y = 0; y < size.height; y += 20) {
+    for (double y = 0; y < size.height; y += 40) {
       canvas.drawLine(Offset(0, y), Offset(size.width, y), paint);
     }
   }

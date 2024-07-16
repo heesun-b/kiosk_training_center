@@ -17,8 +17,9 @@ class Routers {
         path: '/',
         name: 'loading',
         builder: (_, __) {
-          return const LoadingPopUp();
-          // return const ReceiptPage();
+          // return const LoadingPopUp();
+          // return MenuPage(peopleCount: 1);
+          return ReceiptPage();
         },
       ),
       GoRoute(
