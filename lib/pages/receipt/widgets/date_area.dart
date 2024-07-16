@@ -7,7 +7,6 @@ class DateArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
 
     return Column(
       children: [

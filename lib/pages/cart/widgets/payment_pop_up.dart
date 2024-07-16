@@ -34,7 +34,6 @@ class _PaymentPopUpState extends State<PaymentPopUp> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     player.dispose();
     super.dispose();
   }

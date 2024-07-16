@@ -9,12 +9,11 @@ class WorkInfoArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
 
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 40, bottom: 30),
+          padding: const EdgeInsets.only(top: 40, bottom: 30),
           child: SizedBox(
               width: 200,
               height: 150,
@@ -26,10 +25,10 @@ class WorkInfoArea extends StatelessWidget {
                   child: Image.asset(cart.workImage, fit: BoxFit.fill))),
         ),
         Text("${cart.authorName}, <${cart.workName}>",
-          style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 10, fontWeight: FontWeight.bold),),
-        SizedBox(height: 10),
+          style: const TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 10, fontWeight: FontWeight.bold),),
+        const SizedBox(height: 10),
         Text(cart.caption,
-          style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 8, fontWeight: FontWeight.bold),),
+          style: const TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 8, fontWeight: FontWeight.bold),),
       ],
     );
   }
