@@ -13,6 +13,9 @@ import 'package:media_kit/media_kit.dart';
 import 'package:provider/provider.dart';
 import 'package:window_manager/window_manager.dart';
 
+final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+
+
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,6 +63,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
+        scaffoldMessengerKey: scaffoldMessengerKey,
         restorationScopeId: "ktc",
         routerConfig: Routers().routers,
         title: 'KIOSK TRAINING CENTER',

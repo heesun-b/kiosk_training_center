@@ -27,17 +27,16 @@ class _PaymentFifthStepState extends State<PaymentFifthStep> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async{
-      PrintSDKUtil.printClose(context);
+      PrintSDKUtil.printClose();
       Timer(const Duration(seconds: 3), () {
-        PrintSDKUtil.initializePrinter(context);
+        PrintSDKUtil.initializePrinter();
         Timer(const Duration(seconds: 3), () {
-          PrintSDKUtil.openPrint(context);
+          PrintSDKUtil.openPrint();
           Provider.of<MenuProvider>(context, listen: false).state.cartList.forEach((cart) async {
             var capture = await screenshotController.captureFromWidget(receiptPage(cart, Provider.of<MenuProvider>(context, listen: false).state.signImage));
             var filePath = await FileSaver.instance.saveFile(name: 'capture.png', bytes: capture);
-            if (!mounted) return;
-            if (PrintSDKUtil.printExport(filePath,context)) {
-              PrintSDKUtil.cutPaper(context);
+            if (PrintSDKUtil.printExport(filePath)) {
+              PrintSDKUtil.cutPaper();
             }
           });
           GoRouter.of(context).goNamed("count_down", extra: Provider.of<MenuProvider>(context, listen: false).state.cartList,);
