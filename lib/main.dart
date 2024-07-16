@@ -11,6 +11,7 @@ import 'package:kiosk_training_center/pages/video/video_provider.dart';
 import 'package:kiosk_training_center/sle_memory_card.dart';
 import 'package:media_kit/media_kit.dart';
 import 'package:provider/provider.dart';
+import 'package:window_manager/window_manager.dart';
 
 void main() async {
 
@@ -19,6 +20,21 @@ void main() async {
   // init();
   // var connect = sleMemoryCard.connect("ACS ACR39U ICC Reader 0", "");
   // print(connect);
+
+  // Initialize window manager
+  await windowManager.ensureInitialized();
+
+  WindowOptions windowOptions = const WindowOptions(
+    backgroundColor: Colors.transparent,
+    skipTaskbar: false,
+    titleBarStyle: TitleBarStyle.hidden,
+  );
+  windowManager.waitUntilReadyToShow(windowOptions, () async {
+    await windowManager.maximize(); // Maximize the window
+    await windowManager.setFullScreen(true); // Set to fullscreen
+    windowManager.show();
+    windowManager.focus();
+  });
 
 
   runApp(const MyApp());
