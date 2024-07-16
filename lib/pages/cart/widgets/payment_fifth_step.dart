@@ -26,19 +26,16 @@ class _PaymentFifthStepState extends State<PaymentFifthStep> {
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((_) async{
       PrintSDKUtil.printClose();
-      // 1초 대기
       Timer(const Duration(seconds: 1), () {
         PrintSDKUtil.initializePrinter();
         Timer(const Duration(seconds: 1), () {
           PrintSDKUtil.openPrint();
           Provider.of<MenuProvider>(context, listen: false).state.cartList.forEach((cart) async {
-            var capture = await screenshotController.captureFromWidget(ReceiptPage(cart));
+            var capture = await screenshotController.captureFromWidget(receiptPage(cart, Provider.of<MenuProvider>(context, listen: false).state.signImage));
             var saveFile = await FileSaver.instance.saveFile(name: 'capture.png', bytes: capture);
-            // TODO 확인 필요
-            String filePath = "";
+            String filePath = saveFile;
             if (PrintSDKUtil.printExport(filePath)) {
               PrintSDKUtil.cutPaper();
             }
@@ -65,7 +62,7 @@ class _PaymentFifthStepState extends State<PaymentFifthStep> {
                 bottom: BorderSide(color: Colours.darkGrey, width: 2)
               )
             ),
-            child: Text("결제가 완료\n되었습니다.", style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.04,fontWeight: FontWeight.normal , color: Colours.darkGrey, letterSpacing: 3, decoration: TextDecoration.none, height: 1.5))
+            child: Text("결제가 완료\n되었습니다.\n영수증 출력중입니다.", style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.04,fontWeight: FontWeight.normal , color: Colours.darkGrey, letterSpacing: 3, decoration: TextDecoration.none, height: 1.5))
         )
     );
   }

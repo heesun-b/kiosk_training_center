@@ -7,72 +7,48 @@ import 'package:flutter/services.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/my_text_style.dart';
 import 'package:kiosk_training_center/dto/cart.dart';
-import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
 import 'package:kiosk_training_center/pages/receipt/widgets/date_area.dart';
 import 'package:kiosk_training_center/pages/receipt/widgets/signature_area.dart';
 import 'package:kiosk_training_center/pages/receipt/widgets/title_area.dart';
 import 'package:kiosk_training_center/pages/receipt/widgets/work_info_area.dart';
-import 'package:provider/provider.dart';
 
-class ReceiptPage extends StatefulWidget {
-  Cart cart;
-  ReceiptPage(this.cart, {super.key});
+Widget receiptPage(Cart cart, ui.Image? image) {
+  return Scaffold(
+    backgroundColor: Colours.white,
+    body: ScrollConfiguration(
+      behavior: MyCustomScrollBehavior(),
+      child: SingleChildScrollView(
+        child: SizedBox(
+          width: 300,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TitleArea(),
+              DateArea(),
+              WorkInfoArea(cart: cart),
+              SignatureArea(cart: cart, image: image),
+              Padding(
+                padding: const EdgeInsets.only(top: 20, bottom: 20, right: 20, left: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "www.over-man.com\n@space_ubermensch",
+                      style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 8),
+                    ),
+                    Align(
+                        alignment: Alignment.bottomRight,
+                        child: Image.asset('assets/images/qr.jpg', height: 60)),
+                  ],
+                ),
+              )
 
-  @override
-  State<ReceiptPage> createState() => _ReceiptPageState();
-}
-
-class _ReceiptPageState extends State<ReceiptPage> {
-  ui.Image? image;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      image = Provider.of<MenuProvider>(context, listen: false).state.signImage;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colours.white,
-      body: ScrollConfiguration(
-        behavior: MyCustomScrollBehavior(),
-        child: SingleChildScrollView(
-          child: SizedBox(
-            width: 300,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                TitleArea(),
-                DateArea(),
-                WorkInfoArea(cart: widget.cart),
-                SignatureArea(cart: widget.cart, image: image),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: 20, right: 20, left: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "www.over-man.com\n@space_ubermensch",
-                        style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 8),
-                      ),
-                      Align(
-                          alignment: Alignment.bottomRight,
-                          child: Image.asset('assets/images/qr.jpg', height: 60)),
-                    ],
-                  ),
-                )
-
-              ],
-            ),
+            ],
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
 }
 
 class ReceiptDashedLinePainter extends CustomPainter {
