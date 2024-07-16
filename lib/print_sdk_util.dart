@@ -14,6 +14,9 @@ typedef PrintBitmap = int Function(Pointer<Utf8>, int, int, int, bool);
 typedef CutPaperFunc = Int64 Function();
 typedef CutPaper = int Function();
 
+typedef PrinterCurrentStatusFunc = Int64 Function();
+typedef PrinterCurrentStatus = int Function();
+
 typedef PrinterCloseFunc = Int64 Function();
 typedef PrinterClose = int Function();
 
@@ -47,6 +50,16 @@ class PrintSDKUtil {
       scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
         content: Text("bResult: $bResult"),
       ));
+      return false;
+    }
+  }
+
+  static bool state() {
+    final getPrinterCurrentStatus = func.lookupFunction<PrinterCurrentStatusFunc, PrinterCurrentStatus>('GetPrinterCurrentStatus');
+    int cResult = getPrinterCurrentStatus();
+    if (cResult == 0) {
+      return true;
+    } else {
       return false;
     }
   }

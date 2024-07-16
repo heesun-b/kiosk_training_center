@@ -41,7 +41,13 @@ class _PaymentFifthStepState extends State<PaymentFifthStep> {
         await Future.delayed(const Duration(seconds: 1));
         var printExport = PrintSDKUtil.printExport(filePath);
         if (printExport) {
-          await Future.delayed(const Duration(seconds: 3));
+          var isOk = false;
+          while (!isOk) {
+            if (PrintSDKUtil.state()) {
+              isOk = true;
+              await Future.delayed(const Duration(seconds: 1));
+            }
+          }
           PrintSDKUtil.cutPaper();
         }
       });
