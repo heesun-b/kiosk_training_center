@@ -1,12 +1,16 @@
 
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/criteria_size.dart';
 import 'package:kiosk_training_center/constants/my_text_style.dart';
 import 'package:kiosk_training_center/pages/start/widgets/title_container.dart';
+import 'package:media_kit/media_kit.dart';
+import 'package:path_provider/path_provider.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({super.key});
@@ -17,20 +21,25 @@ class StartPage extends StatefulWidget {
 
 class _StartPageState extends State<StartPage> {
 
-  final player = AudioPlayer();
-  final appbarPlayer = AudioPlayer();
+  final player = Player();
+  final appbarPlayer = Player();
   var isAppbarPlayedAudio = false;
 
   @override
   void initState() {
     super.initState();
-    appbarPlayer.playerStateStream.listen((playerState) {
-      if (playerState.processingState == ProcessingState.completed) {
-        setState(() {
+    appbarPlayer.handle.whenComplete(() {
+      setState(() {
           isAppbarPlayedAudio = false;
-        });
-      }
+      });
     });
+    // appbarPlayer.playerStateStream.listen((playerState) {
+    //   if (playerState.processingState == ProcessingState.completed) {
+    //     setState(() {
+    //       isAppbarPlayedAudio = false;
+    //     });
+    //   }
+    // });
   }
 
   @override
@@ -127,19 +136,22 @@ class _StartPageState extends State<StartPage> {
   }
 
   void playAudio() async {
-    if (player.playing) {
+
+    if (player.state.playing) {
       await player.stop();
     }
 
-    await player.setAsset("assets/audios/click.mp3");
-    await player.setVolume(1.0);
+    await loadAssetAndPlay('assets/audios/click.mp3', player);
+    // await player.setAsset("assets/audios/click.mp3");
+    await player.setVolume(100.0);
     await player.play();
 
-    player.playerStateStream.listen((playerState) {
-      if (playerState.processingState == ProcessingState.completed) {
-        GoRouter.of(context).goNamed("select_people_and_method");
-      }
-    });
+    player.handle.whenComplete(() => GoRouter.of(context).goNamed("select_people_and_method"));
+    // player.playerStateStream.listen((playerState) {
+    //   if (playerState.processingState == ProcessingState.completed) {
+    //     GoRouter.of(context).goNamed("select_people_and_method");
+    //   }
+    // });
   }
 
   void stopAudio() async {
@@ -147,12 +159,28 @@ class _StartPageState extends State<StartPage> {
   }
 
   void appbarPlayAudio() async {
-    await appbarPlayer.setAsset("assets/audios/first.mp3");
-    await appbarPlayer.setVolume(1.0);
+    await loadAssetAndPlay('assets/audios/first.mp3', appbarPlayer);
+    // await appbarPlayer.setAsset("assets/audios/first.mp3");
+    await appbarPlayer.setVolume(100.0);
     await appbarPlayer.play();
   }
 
   void appbarStopAudio() async {
     await appbarPlayer.stop();
+  }
+
+  Future<void> loadAssetAndPlay(String path, Player player) async {
+    // assets/audio/first.mp3 파일을 ByteData로 읽기
+    ByteData data = await rootBundle.load(path);
+    // 임시 디렉토리에 파일 저장
+    Directory tempDir = await getTemporaryDirectory();
+
+    String lastPart = path.split('/').last;
+    File tempFile = File('${tempDir.path}/$lastPart');
+
+    await tempFile.writeAsBytes(data.buffer.asUint8List(), flush: true);
+
+    // 저장된 파일을 재생
+    await player.open(Media(tempFile.path));
   }
 }

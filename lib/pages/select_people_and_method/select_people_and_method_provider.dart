@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:kiosk_training_center/pages/menu/menu_page.dart';
 import 'package:kiosk_training_center/pages/select_people_and_method/select_people_and_method_state.dart';
+import 'package:media_kit/media_kit.dart';
+import 'package:path_provider/path_provider.dart';
 
 class SelectPeopleAndMethodProvider extends ChangeNotifier {
   SelectPeopleAndMethodState state = SelectPeopleAndMethodState();
@@ -15,18 +18,14 @@ class SelectPeopleAndMethodProvider extends ChangeNotifier {
 
     state.currentTime = DateTime.now();
     state.timer = Timer(const Duration(seconds: 1), () => _updateTime());
-    state.player.playerStateStream.listen((playerState) {
-      if (playerState.processingState == ProcessingState.completed) {
-        state.isPlayedAudio = false;
-        notifyListeners();
-      }
+    state.player.handle.whenComplete(() {
+      state.isPlayedAudio = false;
+      notifyListeners();
     });
 
-    state.player2.playerStateStream.listen((playerState) {
-      if (playerState.processingState == ProcessingState.completed) {
-        state.isPlayedAudio2 = false;
-        notifyListeners();
-      }
+    state.player2.handle.whenComplete(() {
+      state.isPlayedAudio2 = false;
+      notifyListeners();
     });
 
     notifyListeners();
@@ -67,8 +66,10 @@ class SelectPeopleAndMethodProvider extends ChangeNotifier {
     if(!state.isPlayedAudio) {
       await state.player.stop();
     } else {
-      await state.player.setAsset(audioPath);
-      await state.player.setVolume(1.0);
+
+      await loadAssetAndPlay(audioPath);
+      // await state.player.setAsset(audioPath);
+      await state.player.setVolume(100.0);
       await state.player.play();
     }
     notifyListeners();
@@ -80,8 +81,10 @@ class SelectPeopleAndMethodProvider extends ChangeNotifier {
     if(!state.isPlayedAudio2) {
       await state.player2.stop();
     } else {
-      await state.player2.setAsset('assets/audios/bell.mp3');
-      await state.player2.setVolume(1.0);
+
+      await loadAssetAndPlay('assets/audios/bell.mp3');
+      // await state.player2.setAsset('assets/audios/bell.mp3');
+      await state.player2.setVolume(100.0);
       await state.player2.play();
     }
     notifyListeners();
@@ -90,5 +93,19 @@ class SelectPeopleAndMethodProvider extends ChangeNotifier {
   void baseDispose() {
     state.timer.cancel();
     state.player.dispose();
+    state.player2.dispose();
+  }
+
+  Future<void> loadAssetAndPlay(String path) async {
+    // assets/audio/first.mp3 파일을 ByteData로 읽기
+    ByteData data = await rootBundle.load(path);
+    // 임시 디렉토리에 파일 저장
+    Directory tempDir = await getTemporaryDirectory();
+    String lastPart = path.split('/').last;
+    File tempFile = File('${tempDir.path}/$lastPart');
+    await tempFile.writeAsBytes(data.buffer.asUint8List(), flush: true);
+
+    // 저장된 파일을 재생
+    await state.player.open(Media(tempFile.path));
   }
 }

@@ -1,7 +1,8 @@
 
 import 'dart:async';
 
-import 'package:just_audio/just_audio.dart';
+import 'package:media_kit/media_kit.dart';
+
 
 class SelectPeopleAndMethodState {
   var count = 0;
@@ -9,8 +10,8 @@ class SelectPeopleAndMethodState {
 
   DateTime currentTime = DateTime.now();
   Timer timer = Timer(const Duration(seconds: 1), () {});
-  AudioPlayer player = AudioPlayer();
-  AudioPlayer player2 = AudioPlayer();
+  Player player = Player();
+  Player player2 = Player();
   var isPlayedAudio = false;
   var isPlayedAudio2 = false;
 }

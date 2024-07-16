@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:kiosk_training_center/common_widgets/my_button.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/constants/my_text_style.dart';
 import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
+import 'package:media_kit/media_kit.dart';
 import 'package:provider/provider.dart';
 
 class PaymentFirstStep extends StatelessWidget {
-  AudioPlayer audioPlayer;
+  Player audioPlayer;
 
   PaymentFirstStep({super.key, required this.audioPlayer});
 

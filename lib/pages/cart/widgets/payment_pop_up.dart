@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:kiosk_training_center/constants/colours.dart';
 import 'package:kiosk_training_center/pages/cart/widgets/payment_fifth_step.dart';
 import 'package:kiosk_training_center/pages/cart/widgets/payment_first_step.dart';
@@ -9,6 +11,8 @@ import 'package:kiosk_training_center/pages/cart/widgets/payment_fourth_step.dar
 import 'package:kiosk_training_center/pages/cart/widgets/payment_second_step.dart';
 import 'package:kiosk_training_center/pages/cart/widgets/payment_third_step.dart';
 import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
+import 'package:media_kit/media_kit.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 class PaymentPopUp extends StatefulWidget {
@@ -19,7 +23,7 @@ class PaymentPopUp extends StatefulWidget {
 }
 
 class _PaymentPopUpState extends State<PaymentPopUp> {
-  AudioPlayer player = AudioPlayer();
+  Player player = Player();
   var isPlayedAudio = false;
 
   @override
@@ -28,14 +32,22 @@ class _PaymentPopUpState extends State<PaymentPopUp> {
     playAudio();
   }
 
-  void playAudio()  {
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    player.dispose();
+    super.dispose();
+  }
+
+  void playAudio() async {
 
     setState(() {
       isPlayedAudio = true;
     });
 
-      player.setAsset('assets/audios/sixth.mp3');
-      player.setVolume(1.0);
+      await loadAssetAndPlay('assets/audios/sixth.mp3', player);
+      // player.setAsset('assets/audios/sixth.mp3');
+      player.setVolume(100.0);
       player.play();
   }
 
@@ -63,6 +75,19 @@ class _PaymentPopUpState extends State<PaymentPopUp> {
       ),
     );
   }
+}
+
+Future<void> loadAssetAndPlay(String path, Player player) async {
+  // assets/audio/first.mp3 파일을 ByteData로 읽기
+  ByteData data = await rootBundle.load(path);
+  // 임시 디렉토리에 파일 저장
+  Directory tempDir = await getTemporaryDirectory();
+  String lastPart = path.split('/').last;
+  File tempFile = File('${tempDir.path}/$lastPart');
+  await tempFile.writeAsBytes(data.buffer.asUint8List(), flush: true);
+
+  // 저장된 파일을 재생
+  await player.open(Media(tempFile.path));
 }
 
 

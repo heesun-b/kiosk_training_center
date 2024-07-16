@@ -8,8 +8,8 @@ import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
 import 'package:kiosk_training_center/pages/video/video_provider.dart';
 import 'package:kiosk_training_center/pages/video/widgets/stop_screen.dart';
 import 'package:kiosk_training_center/pages/video/widgets/video_button.dart';
+import 'package:media_kit_video/media_kit_video.dart';
 import 'package:provider/provider.dart';
-import 'package:video_player/video_player.dart';
 
 class VideoPage extends StatefulWidget {
   final List<Cart> cartList;
@@ -43,7 +43,7 @@ class _VideoPageState extends State<VideoPage> {
 
     return Stack(
             children: [
-              VideoPlayer(provider.state.controller),
+              Video(controller: provider.state.controller),
               provider.state.initialized ? StopScreen() : Container(),
               AnimatedOpacity(
                 opacity: provider.state.clickedScreen ? 1.0 : 0.0,

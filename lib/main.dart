@@ -9,22 +9,17 @@ import 'package:kiosk_training_center/pages/menu/menu_provider.dart';
 import 'package:kiosk_training_center/pages/select_people_and_method/select_people_and_method_provider.dart';
 import 'package:kiosk_training_center/pages/video/video_provider.dart';
 import 'package:kiosk_training_center/sle_memory_card.dart';
+import 'package:media_kit/media_kit.dart';
 import 'package:provider/provider.dart';
-import 'package:video_player_media_kit/video_player_media_kit.dart';
 
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
+  MediaKit.ensureInitialized();
   init();
   // var connect = sleMemoryCard.connect("ACS ACR39U ICC Reader 0", "");
   // print(connect);
-  VideoPlayerMediaKit.ensureInitialized(
-    android: true,          // default: false    -    dependency: media_kit_libs_android_video
-    iOS: true,              // default: false    -    dependency: media_kit_libs_ios_video
-    macOS: true,            // default: false    -    dependency: media_kit_libs_macos_video
-    windows: true,          // default: false    -    dependency: media_kit_libs_windows_video
-    linux: true,            // default: false    -    dependency: media_kit_libs_linux
-  );
+
 
   runApp(const MyApp());
 }
@@ -49,7 +44,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
-        restorationScopeId: 'ktc',
+        restorationScopeId: "ktc",
         routerConfig: Routers().routers,
         title: 'KIOSK TRAINING CENTER',
         debugShowCheckedModeBanner: false,
