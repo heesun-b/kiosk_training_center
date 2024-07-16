@@ -26,22 +26,25 @@ class _PaymentFifthStepState extends State<PaymentFifthStep> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async{
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       PrintSDKUtil.printClose();
-      Timer(const Duration(seconds: 3), () {
-        PrintSDKUtil.initializePrinter();
-        Timer(const Duration(seconds: 3), () {
-          PrintSDKUtil.openPrint();
-          Provider.of<MenuProvider>(context, listen: false).state.cartList.forEach((cart) async {
-            var capture = await screenshotController.captureFromWidget(receiptPage(cart, Provider.of<MenuProvider>(context, listen: false).state.signImage));
-            var filePath = await FileSaver.instance.saveFile(name: 'capture.png', bytes: capture);
-            if (PrintSDKUtil.printExport(filePath)) {
-              PrintSDKUtil.cutPaper();
-            }
-          });
-          GoRouter.of(context).goNamed("count_down", extra: Provider.of<MenuProvider>(context, listen: false).state.cartList,);
-        });
+      await Future.delayed(const Duration(seconds: 1));
+      PrintSDKUtil.initializePrinter();
+      await Future.delayed(const Duration(seconds: 1));
+      PrintSDKUtil.openPrint();
+      await Future.delayed(const Duration(seconds: 1));
+      Provider.of<MenuProvider>(context, listen: false).state.cartList.forEach((cart) async {
+        var capture = await screenshotController.captureFromWidget(receiptPage(cart, Provider.of<MenuProvider>(context, listen: false).state.signImage));
+        var filePath = await FileSaver.instance.saveFile(name: 'capture.png', bytes: capture);
+        await Future.delayed(const Duration(seconds: 1));
+        var printExport = PrintSDKUtil.printExport(filePath);
+        if (printExport) {
+          await Future.delayed(const Duration(seconds: 1));
+          PrintSDKUtil.cutPaper();
+        }
       });
+      await Future.delayed(const Duration(seconds: 1));
+      GoRouter.of(context).goNamed("count_down", extra: Provider.of<MenuProvider>(context, listen: false).state.cartList,);
     });
   }
 
