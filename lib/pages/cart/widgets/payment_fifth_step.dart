@@ -34,8 +34,7 @@ class _PaymentFifthStepState extends State<PaymentFifthStep> {
           PrintSDKUtil.openPrint();
           Provider.of<MenuProvider>(context, listen: false).state.cartList.forEach((cart) async {
             var capture = await screenshotController.captureFromWidget(receiptPage(cart, Provider.of<MenuProvider>(context, listen: false).state.signImage));
-            var saveFile = await FileSaver.instance.saveFile(name: 'capture.png', bytes: capture);
-            String filePath = saveFile;
+            var filePath = await FileSaver.instance.saveFile(name: 'capture.png', bytes: capture);
             if (PrintSDKUtil.printExport(filePath)) {
               PrintSDKUtil.cutPaper();
             }
