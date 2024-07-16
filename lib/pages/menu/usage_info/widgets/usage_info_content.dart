@@ -17,10 +17,6 @@ class UsageInfoContent extends StatelessWidget {
 
     return Column(
       children: [
-        SizedBox(height: size.height * 0.08),
-        Text('아래의 내용을 확인 후 관람을 진행해 주세요.',
-          style: TextStyle(fontFamily: MyTextStyle.ownglyphJooreeletter, fontSize: size.width * 0.02, fontWeight: FontWeight.bold),),
-        SizedBox(height: size.height * 0.05),
         Stack(
           children: [
             Padding(
