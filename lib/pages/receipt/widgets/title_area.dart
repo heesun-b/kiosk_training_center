@@ -34,11 +34,11 @@ class TitleArea extends StatelessWidget {
           children: [
             Text(
               "Kiosk Training Center",
-              style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontFamily: MyTextStyle.pretendard, fontSize: 15, fontWeight: FontWeight.bold),
             ),
             Text(
               "키오스크 트레이닝 센터",
-              style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontFamily: MyTextStyle.pretendard, fontSize: 15, fontWeight: FontWeight.bold),
             ),
           ],
         ),

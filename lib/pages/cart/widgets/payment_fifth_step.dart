@@ -72,7 +72,7 @@ class _PaymentFifthStepState extends State<PaymentFifthStep> {
                 bottom: BorderSide(color: Colours.darkGrey, width: 2)
               )
             ),
-            child: Text("결제가 완료\n되었습니다.\n영수증 출력중입니다.", style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.04,fontWeight: FontWeight.normal , color: Colours.darkGrey, letterSpacing: 3, decoration: TextDecoration.none, height: 1.5))
+            child: Text("결제가 완료\n되었습니다.\n영수증 출력중입니다.", style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.03,fontWeight: FontWeight.normal , color: Colours.darkGrey, letterSpacing: 3, decoration: TextDecoration.none, height: 1.5))
         )
     );
   }

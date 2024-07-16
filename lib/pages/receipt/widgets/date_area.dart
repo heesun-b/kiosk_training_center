@@ -14,7 +14,7 @@ class DateArea extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
             nowDate(),
-            style: const TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 13, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontFamily: MyTextStyle.pretendard, fontSize: 13, fontWeight: FontWeight.bold),
           ),
         ),
         Padding(
