@@ -29,8 +29,8 @@ class _PaymentFifthStepState extends State<PaymentFifthStep> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       PrintSDKUtil.printClose();
       await Future.delayed(const Duration(seconds: 1));
-      PrintSDKUtil.initializePrinter();
-      await Future.delayed(const Duration(seconds: 1));
+      // PrintSDKUtil.initializePrinter();
+      // await Future.delayed(const Duration(seconds: 1));
       PrintSDKUtil.openPrint();
       await Future.delayed(const Duration(seconds: 1));
       var i = 0;
