@@ -13,42 +13,72 @@ import 'package:kiosk_training_center/pages/receipt/widgets/title_area.dart';
 import 'package:kiosk_training_center/pages/receipt/widgets/work_info_area.dart';
 
 Widget receiptPage(Cart cart, ui.Image? image) {
-  return Scaffold(
-    backgroundColor: Colours.white,
-    body: ScrollConfiguration(
-      behavior: MyCustomScrollBehavior(),
-      child: SingleChildScrollView(
-        child: SizedBox(
-          width: 300,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TitleArea(),
-              DateArea(),
-              WorkInfoArea(cart: cart),
-              SignatureArea(cart: cart, image: image),
-              Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 20, right: 20, left: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "www.over-man.com\n@space_ubermensch",
-                      style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 8),
-                    ),
-                    Align(
-                        alignment: Alignment.bottomRight,
-                        child: Image.asset('assets/images/qr.jpg', height: 60)),
-                  ],
-                ),
-              )
 
+  return Container(
+    color: Colours.white,
+    width: 300,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        TitleArea(),
+        DateArea(),
+        WorkInfoArea(cart: cart),
+        SignatureArea(cart: cart, image: image!),
+        Padding(
+          padding: const EdgeInsets.only(top: 20, bottom: 20, right: 20, left: 30),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                "www.over-man.com\n@space_ubermensch",
+                style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 8),
+              ),
+              Align(
+                  alignment: Alignment.bottomRight,
+                  child: Image.asset('assets/images/qr.jpg', height: 60)),
             ],
           ),
-        ),
-      ),
+        )
+
+      ],
     ),
   );
+  // return Scaffold(
+  //   backgroundColor: Colours.white,
+  //   body: ScrollConfiguration(
+  //     behavior: MyCustomScrollBehavior(),
+  //     child: SingleChildScrollView(
+  //       child: SizedBox(
+  //         width: 300,
+  //         child: Column(
+  //           crossAxisAlignment: CrossAxisAlignment.center,
+  //           children: [
+  //             TitleArea(),
+  //             DateArea(),
+  //             WorkInfoArea(cart: cart),
+  //             SignatureArea(cart: cart, image: image!),
+  //             Padding(
+  //               padding: const EdgeInsets.only(top: 20, bottom: 20, right: 20, left: 30),
+  //               child: Row(
+  //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                 children: [
+  //                   const Text(
+  //                     "www.over-man.com\n@space_ubermensch",
+  //                     style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 8),
+  //                   ),
+  //                   Align(
+  //                       alignment: Alignment.bottomRight,
+  //                       child: Image.asset('assets/images/qr.jpg', height: 60)),
+  //                 ],
+  //               ),
+  //             )
+  //
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   ),
+  // );
 }
 
 class ReceiptDashedLinePainter extends CustomPainter {
