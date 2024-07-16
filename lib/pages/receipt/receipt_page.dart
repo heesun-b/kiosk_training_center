@@ -15,7 +15,8 @@ import 'package:kiosk_training_center/pages/receipt/widgets/work_info_area.dart'
 import 'package:provider/provider.dart';
 
 class ReceiptPage extends StatefulWidget {
-  const ReceiptPage({super.key});
+  Cart cart;
+  ReceiptPage(this.cart, {super.key});
 
   @override
   State<ReceiptPage> createState() => _ReceiptPageState();
@@ -23,22 +24,12 @@ class ReceiptPage extends StatefulWidget {
 
 class _ReceiptPageState extends State<ReceiptPage> {
   ui.Image? image;
-  List<Cart> cartList = [
-    Cart(
-        authorName: '전보경',
-        workName: 'Zeros: 오류의 동작',
-        caption: '2020, 2채널 비디오의 단채널 버전, 컬러, 사운드, 13분 20초',
-        workImage: 'assets/images/works/zeros_operation_errors.jpg',
-        workVideo: '',
-        price: 3)
-  ];
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       image = Provider.of<MenuProvider>(context, listen: false).state.signImage;
-      // cartList = Provider.of<MenuProvider>(context, listen: false).state.cartList;
     });
   }
 
@@ -57,8 +48,8 @@ class _ReceiptPageState extends State<ReceiptPage> {
               children: [
                 TitleArea(),
                 DateArea(),
-                WorkInfoArea(cart: cartList[0]),
-                SignatureArea(cart: cartList[0], image: image),
+                WorkInfoArea(cart: widget.cart),
+                SignatureArea(cart: widget.cart, image: image),
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 20, right: 20, left: 30),
                   child: Row(

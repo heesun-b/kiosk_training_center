@@ -88,3 +88,4 @@ class VideoProvider extends ChangeNotifier {
     context.replace('/');
   }
 }
+

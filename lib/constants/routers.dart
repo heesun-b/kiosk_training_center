@@ -17,9 +17,9 @@ class Routers {
         path: '/',
         name: 'loading',
         builder: (_, __) {
-          // return const LoadingPopUp();
+          return const LoadingPopUp();
           // return MenuPage(peopleCount: 1);
-          return ReceiptPage();
+          // return ReceiptPage();
         },
       ),
       GoRoute(
@@ -57,13 +57,13 @@ class Routers {
           return VideoPage(cartList: state.extra as List<Cart>);
         },
       ),
-      GoRoute(
-        path: '/receipt',
-        name: 'receipt',
-        builder: (context, state) {
-          return ReceiptPage();
-        },
-      ),
+      // GoRoute(
+      //   path: '/receipt',
+      //   name: 'receipt',
+      //   builder: (context, state) {
+      //     return ReceiptPage();
+      //   },
+      // ),
     ],
   );
 

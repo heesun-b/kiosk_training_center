@@ -33,8 +33,7 @@ class PrintSDKUtil {
     }
   }
 
-  static bool printExport() {
-    String filePath = "C:/workspace/kiosk_training_center/assets/images/loading.png";
+  static bool printExport(String filePath) {
     final printBitmap = func.lookupFunction<PrintBitmapFunc, PrintBitmap>('PrintBitmap');
     int bResult = printBitmap(filePath.toNativeUtf8(), -1, 1, 30, false);
     print("bResult: $bResult");
