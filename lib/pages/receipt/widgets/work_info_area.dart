@@ -14,10 +14,10 @@ class WorkInfoArea extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(vertical: size.height * 0.2),
+          padding: EdgeInsets.only(top: 40, bottom: 30),
           child: SizedBox(
-              width: size.width * 0.7,
-              height: size.height * 0.7,
+              width: 200,
+              height: 150,
               child: ColorFiltered(
                   colorFilter:  const ColorFilter.mode(
                     Colors.grey,
@@ -26,10 +26,10 @@ class WorkInfoArea extends StatelessWidget {
                   child: Image.asset(cart.workImage, fit: BoxFit.fill))),
         ),
         Text("${cart.authorName}, <${cart.workName}>",
-          style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.03),),
-        SizedBox(height: size.height * 0.08),
+          style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 10, fontWeight: FontWeight.bold),),
+        SizedBox(height: 10),
         Text(cart.caption,
-          style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.02),),
+          style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 8, fontWeight: FontWeight.bold),),
       ],
     );
   }

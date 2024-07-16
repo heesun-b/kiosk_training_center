@@ -50,29 +50,33 @@ class _ReceiptPageState extends State<ReceiptPage> {
       body: ScrollConfiguration(
         behavior: MyCustomScrollBehavior(),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              TitleArea(),
-              DateArea(),
-              WorkInfoArea(cart: cartList[0]),
-              SignatureArea(cart: cartList[0], image: image),
-              Padding(
-                padding: EdgeInsets.only(top: size.height * 0.1, bottom: size.height * 0.1, right: size.width * 0.02, left: size.width * 0.05),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "www.over-man.com\n@space_ubermensch",
-                      style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.03),
-                    ),
-                    Align(
-                        alignment: Alignment.centerRight,
-                        child: Image.asset('assets/images/qr.jpg', height: size.height * 0.3)),
-                  ],
-                ),
-              )
+          child: SizedBox(
+            width: 300,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                TitleArea(),
+                DateArea(),
+                WorkInfoArea(cart: cartList[0]),
+                SignatureArea(cart: cartList[0], image: image),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: 20, right: 20, left: 30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "www.over-man.com\n@space_ubermensch",
+                        style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 8),
+                      ),
+                      Align(
+                          alignment: Alignment.bottomRight,
+                          child: Image.asset('assets/images/qr.jpg', height: 60)),
+                    ],
+                  ),
+                )
 
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -85,12 +89,12 @@ class ReceiptDashedLinePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
       ..color = Colours.black
-      ..strokeWidth = 2.0
+      ..strokeWidth = 1.0
       ..style = PaintingStyle.stroke;
 
     var max = size.width;
-    var dashWidth = 15.0;
-    var dashSpace = 10.0;
+    var dashWidth = 8.0;
+    var dashSpace = 3.0;
     double startX = 0;
 
     while (startX < max) {

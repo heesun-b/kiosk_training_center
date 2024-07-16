@@ -12,16 +12,19 @@ class DateArea extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(vertical: size.height * 0.1),
+          padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
             nowDate(),
-            style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.03),
+            style: const TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 10, fontWeight: FontWeight.bold),
           ),
         ),
-        CustomPaint(
-          painter: ReceiptDashedLinePainter(),
-          child: SizedBox(
-            width: size.width * 0.9,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          child: CustomPaint(
+            painter: ReceiptDashedLinePainter(),
+            child: const SizedBox(
+              width: 300,
+            ),
           ),
         ),
       ],

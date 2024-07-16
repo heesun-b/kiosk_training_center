@@ -19,25 +19,28 @@ class SignatureArea extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal:size.width * 0.15, vertical: size.height * 0.2),
+          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 35),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                  width: size.width * 0.3,
-                  height: size.height * 0.3,
+                  width: 100,
+                  height: 50,
                   child: Image.asset(signaturePath(cart.authorName))),
               image != null ?
-              CustomPaint(painter: ImagePainter(image!), size: Size(size.width * 0.3, size.height * 0.3),)
-                  : Container(color: Colours.pink1, width: size.width * 0.3, height: size.height * 0.3,)
+              CustomPaint(painter: ImagePainter(image!), size: Size(100, 50),)
+                  : Container(color: Colours.pink1, width: 100, height: 50,)
 
             ],
           ),
         ),
-        CustomPaint(
-          painter: ReceiptDashedLinePainter(),
-          child: SizedBox(
-            width: size.width * 0.9,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30),
+          child: CustomPaint(
+            painter: ReceiptDashedLinePainter(),
+            child: SizedBox(
+              width: double.infinity,
+            ),
           ),
         ),
       ],

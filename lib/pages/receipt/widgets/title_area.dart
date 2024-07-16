@@ -10,36 +10,36 @@ class TitleArea extends StatelessWidget {
     var size = MediaQuery.of(context).size;
 
     return  Container(
-      margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
-      padding:  EdgeInsets.symmetric(horizontal: size.width * 0.01, vertical: size.height * 0.015),
+      margin: const EdgeInsets.symmetric(horizontal: 30),
+      padding:  const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
       width: double.infinity,
-      height: size.height * 0.4,
+      height: 60,
       decoration: BoxDecoration(
         border: Border.all(
             color: Colours.black,
-            width: 3
+            width: 2
         ),
       ),
       child: Container(
         width: double.infinity,
-        height: size.height * 0.4,
+        height: 100,
         decoration: BoxDecoration(
           border: Border.all(
               color: Colours.black,
-              width: 2
+              width: 1
           ),
         ),
         alignment: Alignment.center,
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               "Kiosk Training Center",
-              style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.05),
+              style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 13, fontWeight: FontWeight.bold),
             ),
             Text(
               "키오스크 트레이닝 센터",
-              style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.05),
+              style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 13, fontWeight: FontWeight.bold),
             ),
           ],
         ),
