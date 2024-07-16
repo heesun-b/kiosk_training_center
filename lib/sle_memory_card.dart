@@ -1,5 +1,7 @@
 import 'dart:ffi';
 import 'package:ffi/ffi.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 // Type definitions for the WinSCard functions and constants.
 typedef SCardEstablishContextC = Int32 Function(
@@ -101,9 +103,9 @@ List<String> parseMultiString(Pointer<Uint16> multiString) {
   return strings;
 }
 
-bool init() {
+bool init(BuildContext context) {
   // Load the WinSCard DLL
-  final winSCard = DynamicLibrary.open('winscard.dll'); // Updated DLL name
+  final winSCard = DynamicLibrary.open('assets/lib/winscard.dll'); // Updated DLL name
 
   // Look up the SCardEstablishContext function
   final SCardEstablishContextDart SCardEstablishContext = winSCard.lookupFunction<SCardEstablishContextC, SCardEstablishContextDart>('SCardEstablishContext');
@@ -122,7 +124,9 @@ bool init() {
   final result = SCardEstablishContext(SCARD_SCOPE_SYSTEM, nullptr, nullptr, phContext);
 
   if (result == SCARD_S_SUCCESS) {
-    print('SCardEstablishContext succeeded, context: ${phContext.value}');
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('SCardEstablishContext succeeded, context: ${phContext.value}')
+    ));
 
     // Get the list of readers
     final pcchReaders = calloc<Uint32>();
@@ -133,7 +137,10 @@ bool init() {
       final resultListReaders = SCardListReadersW(phContext.value, nullptr, mszReaders.cast<Utf16>(), pcchReaders);
       if (resultListReaders == SCARD_S_SUCCESS) {
         final readerList = parseMultiString(mszReaders);
-        print('Connected readers: ${readerList.join(', ')}');
+
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Readers: $readerList')
+        ));
 
         // Select the first reader for connection (change as needed)
         final readerName = readerList.isNotEmpty ? readerList.first : null;
@@ -152,7 +159,6 @@ bool init() {
           );
 
           if (connectResult == SCARD_S_SUCCESS) {
-            print('Connected to card on reader: $readerName');
 
             // Check card state
             final pdwState = calloc<Uint32>();
@@ -190,22 +196,32 @@ bool init() {
             calloc.free(phContext);
             return true;
           } else {
-            print('Failed to connect to card on reader: $readerName, error code: $connectResult');
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text('SCardConnectW failed, error code: $connectResult')
+            ));
           }
         } else {
-          print('No reader available to connect.');
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('No readers available to connect.')
+          ));
         }
 
         calloc.free(mszReaders);
       } else {
-        print('SCardListReadersW failed, error code: $resultListReaders');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('SCardListReadersW failed, error code: $resultListReaders')
+        ));
       }
       calloc.free(pcchReaders);
     } else {
-      print('No readers found.');
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('No readers available to connect.')
+      ));
     }
   } else {
-    print('SCardEstablishContext failed, error code: $result');
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('SCardEstablishContext failed, error code: $result')
+    ));
   }
 
   // Free allocated memory

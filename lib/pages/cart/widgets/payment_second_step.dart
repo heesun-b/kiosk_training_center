@@ -27,7 +27,7 @@ class _PaymentSecondStepState extends State<PaymentSecondStep>{
         // 1초 마다 실행
         Timer.periodic(const Duration(seconds: 1), (timer) {
           timer.cancel();
-          if (init()) {
+          if (init(context)) {
             this.timer?.cancel();
             Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
           }

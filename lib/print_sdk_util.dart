@@ -1,6 +1,8 @@
 
 import 'dart:ffi';
 import 'package:ffi/ffi.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 typedef PrinterOpenFunc = Int64 Function(Int32, Pointer<Utf8>, Int32, Int32, Int32, Int32, Int32);
 typedef PrinterOpen = int Function(int, Pointer<Utf8>, int, int, int, int, int);
@@ -20,12 +22,15 @@ typedef InitializePrinter = int Function();
 class PrintSDKUtil {
   static final DynamicLibrary func = DynamicLibrary.open('assets/lib/BXLPAPI_x64.dll');
 
-  static bool openPrint() {
+  static bool openPrint(BuildContext context) {
     final printerOpen = func.lookupFunction<PrinterOpenFunc, PrinterOpen>('PrinterOpen');
     // Example call with parameters similar to your C++ example
     String printerName = ''; // Replace with your printer
     int lResult = printerOpen(2, printerName.toNativeUtf8(), 0, 0, 0, 0, 0);
-    print("lResult: $lResult");
+    // windows snackbar
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('lResult: $lResult'),
+    ));
     if (lResult == 0) {
       return true;
     } else {
@@ -33,10 +38,12 @@ class PrintSDKUtil {
     }
   }
 
-  static bool printExport(String filePath) {
+  static bool printExport(String filePath, BuildContext context) {
     final printBitmap = func.lookupFunction<PrintBitmapFunc, PrintBitmap>('PrintBitmap');
     int bResult = printBitmap(filePath.toNativeUtf8(), -1, 1, 30, false);
-    print("bResult: $bResult");
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text("bResult: $bResult"),
+    ));
     if (bResult == 0) {
       return true;
     } else {
@@ -44,10 +51,12 @@ class PrintSDKUtil {
     }
   }
 
-  static bool cutPaper() {
+  static bool cutPaper(BuildContext context) {
     final cutPaper = func.lookupFunction<CutPaperFunc, CutPaper>('CutPaper');
     int cResult = cutPaper();
-    print("cResult: $cResult");
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text("cResult: $cResult"),
+    ));
     if (cResult == 0) {
       return true;
     } else {
@@ -55,10 +64,12 @@ class PrintSDKUtil {
     }
   }
 
-  static bool printClose() {
+  static bool printClose(BuildContext context) {
     final printClose = func.lookupFunction<PrinterCloseFunc, PrinterClose>('PrinterClose');
     int pcResult = printClose();
-    print("pcResult: $pcResult");
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text("pcResult: $pcResult"),
+    ));
     if (pcResult == 0) {
       return true;
     } else {
@@ -66,10 +77,12 @@ class PrintSDKUtil {
     }
   }
 
-  static bool initializePrinter() {
+  static bool initializePrinter(BuildContext context) {
     final initializePrinter = func.lookupFunction<InitializePrinterFunc, InitializePrinter>('InitializePrinter');
     int iPResult = initializePrinter();
-    print("iPResult: $iPResult");
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text("iPResult: $iPResult"),
+    ));
     if (iPResult == 0) {
       return true;
     } else {
