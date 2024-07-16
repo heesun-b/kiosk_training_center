@@ -120,6 +120,11 @@ class MenuProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void previousPaymentStep () {
+    state.currentPaymentStep = state.currentPaymentStep -1;
+    notifyListeners();
+  }
+
   void clickedPaymentFirstButton() {
     state.clickedFirstStep = !state.clickedFirstStep;
     notifyListeners();

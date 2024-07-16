@@ -19,26 +19,31 @@ class PaymentSecondStep extends StatefulWidget {
 class _PaymentSecondStepState extends State<PaymentSecondStep>{
 
   Timer? timer;
+  var i = 0;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      timer = Timer(const Duration(seconds: 100), () {
-        // 1초 마다 실행
-        Timer.periodic(const Duration(seconds: 1), (timer) {
-          timer.cancel();
-          try {
-            if (init()) {
-              this.timer?.cancel();
-              Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
-            }
-          } catch (e) {
-            scaffoldMessengerKey.currentState?.showSnackBar(
-            SnackBar(content: Text(e.toString()), backgroundColor: Colours.red,)
-            );
+      Timer.periodic(const Duration(seconds: 1), (timer) {
+        i = i + 1;
+        try {
+          if (init()) {
+            timer.cancel();
+            Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
           }
-        });
+        } catch (e) {
+          scaffoldMessengerKey.currentState?.showSnackBar(
+          SnackBar(content: Text(e.toString()), backgroundColor: Colours.red,)
+          );
+        }
+        if (i > 100) {
+          timer.cancel();
+          scaffoldMessengerKey.currentState?.showSnackBar(
+              const SnackBar(content: Text("결제를 실패했습니다."), backgroundColor: Colours.red,)
+          );
+          Provider.of<MenuProvider>(context, listen: false).previousPaymentStep();
+        }
       });
     });
   }
