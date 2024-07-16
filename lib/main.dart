@@ -14,6 +14,7 @@ import 'package:video_player_media_kit/video_player_media_kit.dart';
 
 void main() async {
 
+  WidgetsFlutterBinding.ensureInitialized();
   init();
   // var connect = sleMemoryCard.connect("ACS ACR39U ICC Reader 0", "");
   // print(connect);
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
+        restorationScopeId: 'ktc',
         routerConfig: Routers().routers,
         title: 'KIOSK TRAINING CENTER',
         debugShowCheckedModeBanner: false,

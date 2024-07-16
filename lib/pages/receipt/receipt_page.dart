@@ -65,7 +65,7 @@ class _ReceiptPageState extends State<ReceiptPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "@space_ubermensch\nwww.over-man.com",
+                      "www.over-man.com\n@space_ubermensch",
                       style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: size.width * 0.03),
                     ),
                     Align(
