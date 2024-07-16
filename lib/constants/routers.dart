@@ -11,7 +11,7 @@ import 'package:kiosk_training_center/pages/video/video_page.dart';
 class Routers {
 
   final GoRouter routers = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/receipt',
     routes: <RouteBase>[
       GoRoute(
         path: '/',

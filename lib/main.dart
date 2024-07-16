@@ -16,7 +16,7 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   MediaKit.ensureInitialized();
-  init();
+  // init();
   // var connect = sleMemoryCard.connect("ACS ACR39U ICC Reader 0", "");
   // print(connect);
 

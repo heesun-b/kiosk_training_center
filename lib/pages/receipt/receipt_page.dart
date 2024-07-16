@@ -23,7 +23,6 @@ class ReceiptPage extends StatefulWidget {
 
 class _ReceiptPageState extends State<ReceiptPage> {
   ui.Image? image;
-  // List<Cart> cartList = [];
   List<Cart> cartList = [
     Cart(
         authorName: '전보경',
@@ -36,7 +35,6 @@ class _ReceiptPageState extends State<ReceiptPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       image = Provider.of<MenuProvider>(context, listen: false).state.signImage;
@@ -47,7 +45,6 @@ class _ReceiptPageState extends State<ReceiptPage> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Colours.white,
       body: ScrollConfiguration(

@@ -101,26 +101,21 @@ List<String> parseMultiString(Pointer<Uint16> multiString) {
   return strings;
 }
 
-void init() {
+bool init() {
   // Load the WinSCard DLL
   final winSCard = DynamicLibrary.open('winscard.dll'); // Updated DLL name
 
   // Look up the SCardEstablishContext function
-  final SCardEstablishContextDart SCardEstablishContext =
-  winSCard.lookupFunction<SCardEstablishContextC, SCardEstablishContextDart>(
-      'SCardEstablishContext');
+  final SCardEstablishContextDart SCardEstablishContext = winSCard.lookupFunction<SCardEstablishContextC, SCardEstablishContextDart>('SCardEstablishContext');
 
   // Look up the SCardListReadersW function
-  final SCardListReadersWDart SCardListReadersW =
-  winSCard.lookupFunction<SCardListReadersWC, SCardListReadersWDart>('SCardListReadersW');
+  final SCardListReadersWDart SCardListReadersW = winSCard.lookupFunction<SCardListReadersWC, SCardListReadersWDart>('SCardListReadersW');
 
   // Look up the SCardConnectW function
-  final SCardConnectWDart SCardConnectW =
-  winSCard.lookupFunction<SCardConnectWC, SCardConnectWDart>('SCardConnectW');
+  final SCardConnectWDart SCardConnectW = winSCard.lookupFunction<SCardConnectWC, SCardConnectWDart>('SCardConnectW');
 
   // Look up the SCardStatusW function
-  final SCardStatusWDart SCardStatusW =
-  winSCard.lookupFunction<SCardStatusWC, SCardStatusWDart>('SCardStatusW');
+  final SCardStatusWDart SCardStatusW = winSCard.lookupFunction<SCardStatusWC, SCardStatusWDart>('SCardStatusW');
 
   // Establish the context
   final phContext = calloc<IntPtr>();
@@ -192,6 +187,8 @@ void init() {
             calloc.free(pdwState);
             calloc.free(pdwActiveProtocol);
             calloc.free(phCard);
+            calloc.free(phContext);
+            return true;
           } else {
             print('Failed to connect to card on reader: $readerName, error code: $connectResult');
           }
@@ -213,4 +210,5 @@ void init() {
 
   // Free allocated memory
   calloc.free(phContext);
+  return false;
 }

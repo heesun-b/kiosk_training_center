@@ -85,7 +85,6 @@ class MenuProvider extends ChangeNotifier {
 
     if(contained.isEmpty) {
       state.cartList.add(cart);
-
     }
 
      notifyListeners();

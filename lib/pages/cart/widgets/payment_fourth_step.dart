@@ -30,7 +30,7 @@ class _PaymentFourthStepState extends State<PaymentFourthStep> {
         });
       });
 
-      timer2 = Timer(const Duration(seconds: 3), () {
+      timer2 = Timer(const Duration(seconds: 5), () {
         Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
       });
     });

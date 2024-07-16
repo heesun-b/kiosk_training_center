@@ -23,15 +23,9 @@ class _PaymentThirdStepState extends State<PaymentThirdStep> {
   }
 
   Future<void> _handleSaveButtonPressed() async {
-    // var provider =  context.watch<MenuProvider>();
-
     ui.Image image  = await signatureGlobalKey.currentState!.toImage(pixelRatio: 3.0);
-    // final bytes = await data.toByteData(format: ui.ImageByteFormat.png);
-    // provider.saveSign(bytes!.buffer.asUint8List());
-
     Provider.of<MenuProvider>(context, listen: false).saveSign(image);
     Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
-
   }
 
   @override
