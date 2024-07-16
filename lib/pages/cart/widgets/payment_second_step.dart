@@ -25,8 +25,6 @@ class _PaymentSecondStepState extends State<PaymentSecondStep>{
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
-
       Timer.periodic(const Duration(seconds: 1), (timer) {
         i = i + 1;
         try {
