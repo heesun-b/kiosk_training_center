@@ -26,18 +26,10 @@ Widget receiptPage(Cart cart, ui.Image? image) {
         WorkInfoArea(cart: cart),
         SignatureArea(cart: cart, image: image!),
         Padding(
-          padding: const EdgeInsets.only(top: 20, bottom: 20, right: 20, left: 30),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                "www.over-man.com\n@space_ubermensch",
-                style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 8),
-              ),
-              Align(
-                  alignment: Alignment.bottomRight,
-                  child: Image.asset('assets/images/qr.jpg', height: 80)),
-            ],
+          padding: const EdgeInsets.only(top: 20, bottom: 20, right: 20, left: 20),
+          child: const Text(
+            "www.over-man.com\n@space_ubermensch",
+            style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 11),
           ),
         )
 

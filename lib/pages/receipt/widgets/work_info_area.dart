@@ -20,10 +20,13 @@ class WorkInfoArea extends StatelessWidget {
               child: Image.asset(cart.workImage, fit: BoxFit.fill)),
         ),
         Text("${cart.authorName}, <${cart.workName}>",
-          style: const TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 10, fontWeight: FontWeight.bold),),
+          style: const TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 13, fontWeight: FontWeight.bold),),
         const SizedBox(height: 10),
-        Text(cart.caption,
-          style: const TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 8, fontWeight: FontWeight.bold),),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          child: Text(cart.caption,
+            style: const TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 10, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
+        ),
       ],
     );
   }
