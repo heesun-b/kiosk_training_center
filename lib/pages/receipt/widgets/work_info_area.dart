@@ -17,12 +17,7 @@ class WorkInfoArea extends StatelessWidget {
           child: SizedBox(
               width: 200,
               height: 150,
-              child: ColorFiltered(
-                  colorFilter:  const ColorFilter.mode(
-                    Colors.grey,
-                    BlendMode.saturation,
-                  ),
-                  child: Image.asset(cart.workImage, fit: BoxFit.fill))),
+              child: Image.asset(cart.workImage, fit: BoxFit.fill)),
         ),
         Text("${cart.authorName}, <${cart.workName}>",
           style: const TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 10, fontWeight: FontWeight.bold),),

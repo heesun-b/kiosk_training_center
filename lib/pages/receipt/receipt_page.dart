@@ -20,6 +20,7 @@ Widget receiptPage(Cart cart, ui.Image? image) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        SizedBox(height: 10,),
         TitleArea(),
         DateArea(),
         WorkInfoArea(cart: cart),

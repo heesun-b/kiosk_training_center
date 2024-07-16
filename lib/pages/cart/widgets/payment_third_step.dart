@@ -53,8 +53,8 @@ class _PaymentThirdStepState extends State<PaymentThirdStep> {
                     key: signatureGlobalKey,
                     backgroundColor: Colors.white,
                     strokeColor: Colors.black,
-                    minimumStrokeWidth: 4.0,
-                    maximumStrokeWidth: 4.0),
+                    minimumStrokeWidth: 12.0,
+                    maximumStrokeWidth: 12.0),
               )),
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
