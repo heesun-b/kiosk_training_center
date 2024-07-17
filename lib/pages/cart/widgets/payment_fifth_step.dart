@@ -40,16 +40,17 @@ class _PaymentFifthStepState extends State<PaymentFifthStep> {
         i = i + 1;
         await Future.delayed(const Duration(seconds: 1));
         var printExport = PrintSDKUtil.printExport(filePath);
-        if (printExport) {
-          var isOk = false;
-          while (!isOk) {
-            if (PrintSDKUtil.state()) {
-              isOk = true;
-              await Future.delayed(const Duration(seconds: 1));
-            }
-          }
-          PrintSDKUtil.cutPaper();
-        }
+        await Future.delayed(const Duration(seconds: 5));
+        // if (printExport) {
+        //   var isOk = false;
+        //   while (!isOk) {
+        //     if (PrintSDKUtil.state()) {
+        //       isOk = true;
+        //       await Future.delayed(const Duration(seconds: 1));
+        //     }
+        //   }
+        PrintSDKUtil.cutPaper();
+        // }
       });
       await Future.delayed(const Duration(seconds: 3));
       GoRouter.of(context).goNamed("count_down", extra: Provider.of<MenuProvider>(context, listen: false).state.cartList,);
