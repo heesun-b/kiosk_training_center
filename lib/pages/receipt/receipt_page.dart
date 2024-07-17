@@ -12,7 +12,7 @@ import 'package:kiosk_training_center/pages/receipt/widgets/signature_area.dart'
 import 'package:kiosk_training_center/pages/receipt/widgets/title_area.dart';
 import 'package:kiosk_training_center/pages/receipt/widgets/work_info_area.dart';
 
-Widget receiptPage(Cart cart, ui.Image? image) {
+Widget receiptPage(List<Cart> cartList, ui.Image image) {
 
   return Container(
     color: Colours.white,
@@ -23,8 +23,26 @@ Widget receiptPage(Cart cart, ui.Image? image) {
         SizedBox(height: 10,),
         TitleArea(),
         DateArea(),
-        WorkInfoArea(cart: cart),
-        SignatureArea(cart: cart, image: image!),
+
+        Column(
+          children: List.generate(cartList.length, (index) {
+             return Column(
+               children: [
+                 WorkInfoArea(cart: cartList[index]),
+                 SignatureArea(cart: cartList[index], image: image),
+                 Padding(
+                   padding: const EdgeInsets.symmetric(horizontal: 20),
+                   child: CustomPaint(
+                     painter: ReceiptDashedLinePainter(),
+                     child: const SizedBox(
+                       width: double.infinity,
+                     ),
+                   ),
+                 ),
+               ],
+             );
+        },),),
+
         Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 20, right: 20, left: 20),
           child: const Text(

@@ -40,14 +40,14 @@ class MenuState {
           Work(
               krName: '아버지와의 대화',
               enName: 'A Dialogue between Father and Son',
-              caption: '2021, 퍼포먼스 비디오, 단채널, 컬러, 사운드, 26분 45초',
+              caption: '2021, 인터뷰 비디오, 단채널, 컬러, 사운드, 26분 45초',
               imagePath: 'assets/images/works/a_dialogue_between_father_and_son.png',
               videoPath: 'file:///C:/Users/loves/Desktop/artwork/choi/father.mp4',
               infoPath:'assets/textfiles/work_a_dialogue_between_father_and_son.txt'),
           Work(
               krName: '흰석기 시대',
               enName: 'White Stone Age',
-              caption: '2021, 인터뷰 비디오, 단채널, 컬러, 사운드, 10분 30초',
+              caption: '2021, 퍼포먼스 비디오, 단채널, 컬러, 사운드, 10분 30초',
               imagePath: 'assets/images/works/white_stone_age.png',
               videoPath: 'file:///C:/Users/loves/Desktop/artwork/choi/white.mp4',
               infoPath:'assets/textfiles/work_white_stone_age.txt' )

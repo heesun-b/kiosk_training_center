@@ -15,31 +15,18 @@ class SignatureArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 35),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                  width: 100,
-                  height: 50,
-                  child: Image.asset(signaturePath(cart.authorName))),
-              CustomPaint(painter: ImagePainter(image!), size: Size(100, 50),)
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: CustomPaint(
-            painter: ReceiptDashedLinePainter(),
-            child: const SizedBox(
-              width: double.infinity,
-            ),
-          ),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 35),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
+              width: 100,
+              height: 50,
+              child: Image.asset(signaturePath(cart.authorName))),
+          CustomPaint(painter: ImagePainter(image), size: const Size(100, 50),)
+        ],
+      ),
     );
   }
 }
