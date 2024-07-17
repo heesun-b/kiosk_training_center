@@ -32,11 +32,12 @@ void main() async {
     skipTaskbar: false,
     titleBarStyle: TitleBarStyle.hidden,
   );
+
   windowManager.waitUntilReadyToShow(windowOptions, () async {
+    await windowManager.show();
+    await windowManager.focus();
     await windowManager.maximize(); // Maximize the window
     await windowManager.setFullScreen(true); // Set to fullscreen
-    windowManager.show();
-    windowManager.focus();
   });
 
 
