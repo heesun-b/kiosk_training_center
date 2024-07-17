@@ -25,26 +25,28 @@ class _PaymentSecondStepState extends State<PaymentSecondStep>{
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Timer.periodic(const Duration(seconds: 1), (timer) {
-        i = i + 1;
-        try {
-          if (init()) {
-            timer.cancel();
-            Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
-          }
-        } catch (e) {
-          // scaffoldMessengerKey.currentState?.showSnackBar(
-          // SnackBar(content: Text(e.toString()), backgroundColor: Colours.red,)
-          // );
-        }
-        if (i > 30) {
-          timer.cancel();
-          scaffoldMessengerKey.currentState?.showSnackBar(
-              const SnackBar(content: Text("결제를 실패했습니다."), backgroundColor: Colours.red,)
-          );
-          Provider.of<MenuProvider>(context, listen: false).previousPaymentStep();
-        }
-      });
+      Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
+
+      // Timer.periodic(const Duration(seconds: 1), (timer) {
+      //   i = i + 1;
+      //   try {
+      //     if (init()) {
+      //       timer.cancel();
+      //       Provider.of<MenuProvider>(context, listen: false).nextPaymentStep();
+      //     }
+      //   } catch (e) {
+      //     // scaffoldMessengerKey.currentState?.showSnackBar(
+      //     // SnackBar(content: Text(e.toString()), backgroundColor: Colours.red,)
+      //     // );
+      //   }
+      //   if (i > 30) {
+      //     timer.cancel();
+      //     scaffoldMessengerKey.currentState?.showSnackBar(
+      //         const SnackBar(content: Text("결제를 실패했습니다."), backgroundColor: Colours.red,)
+      //     );
+      //     Provider.of<MenuProvider>(context, listen: false).previousPaymentStep();
+      //   }
+      // });
     });
   }
 
