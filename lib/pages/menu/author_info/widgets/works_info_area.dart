@@ -64,7 +64,14 @@ class WorksInfoArea extends StatelessWidget {
                                 if(snapshot.hasData) {
                                   return Padding(
                                     padding: const EdgeInsets.only(left: 30),
-                                    child: Text(snapshot.data.toString(), style: TextStyle(fontSize: size.width * 0.017, fontFamily: MyTextStyle.humanBeomseok, height: 1.7),textAlign: TextAlign.justify),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text("${author.works[index].krName} (${author.works[index].enName})", style: TextStyle(fontSize: size.width * 0.017, fontFamily: MyTextStyle.humanBeomseok, fontWeight: FontWeight.bold)),
+                                        SizedBox(height: size.height * 0.05),
+                                        Text(snapshot.data.toString(), style: TextStyle(fontSize: size.width * 0.017, fontFamily: MyTextStyle.humanBeomseok, height: 1.7),textAlign: TextAlign.justify),
+                                      ],
+                                    ),
                                   );
                                 } else {
                                   return  Padding(

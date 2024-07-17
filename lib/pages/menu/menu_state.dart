@@ -30,7 +30,7 @@ class MenuState {
               enName: 'Zeros: Operation Errors',
               caption: '2020, 2채널 비디오의 단채널 버전, 컬러, 사운드, 13분 20초',
               imagePath: 'assets/images/works/zeros_operation_errors.jpg',
-              videoPath: 'file:///C:/Users/loves/OneDrive/Desktop/artwork/jun/error.mp4',
+              videoPath: 'file:///C:/Users/loves/Desktop/artwork/jun/error.mp4',
               infoPath: 'assets/textfiles/work_zeros_operation_errors.txt')]
     ),
     Author(
@@ -42,14 +42,14 @@ class MenuState {
               enName: 'A Dialogue between Father and Son',
               caption: '2021, 퍼포먼스 비디오, 단채널, 컬러, 사운드, 26분 45초',
               imagePath: 'assets/images/works/a_dialogue_between_father_and_son.png',
-              videoPath: 'file:///C:/Users/loves/OneDrive/Desktop/artwork/choi/father.mp4',
+              videoPath: 'file:///C:/Users/loves/Desktop/artwork/choi/father.mp4',
               infoPath:'assets/textfiles/work_a_dialogue_between_father_and_son.txt'),
           Work(
               krName: '흰석기 시대',
               enName: 'White Stone Age',
               caption: '2021, 인터뷰 비디오, 단채널, 컬러, 사운드, 10분 30초',
               imagePath: 'assets/images/works/white_stone_age.png',
-              videoPath: 'file:///C:/Users/loves/OneDrive/Desktop/artwork/choi/white.mp4',
+              videoPath: 'file:///C:/Users/loves/Desktop/artwork/choi/white.mp4',
               infoPath:'assets/textfiles/work_white_stone_age.txt' )
         ]),
     Author(
@@ -61,35 +61,35 @@ class MenuState {
               enName: 'Inherited home',
               caption: '2023, 단채널 비디오, 컬러, 사운드, 20분 7초',
               imagePath: 'assets/images/works/inherited_home.png',
-              videoPath: 'file:///C:/Users/loves/OneDrive/Desktop/artwork/han/inherited_home.mp4',
+              videoPath: 'file:///C:/Users/loves/Desktop/artwork/han/inherited_home.mp4',
               infoPath: 'assets/textfiles/work_inherited_home.txt' ),
           Work(
               krName: '기묘한 집',
               enName: 'Strange House',
               caption: '2023, 단채널 비디오, 컬러, 사운드, 15분 33초',
               imagePath: 'assets/images/works/strange_house.png',
-              videoPath: 'file:///C:/Users/loves/OneDrive/Desktop/artwork/han/strange house_pre sound remaster.mp4',
+              videoPath: 'file:///C:/Users/loves/Desktop/artwork/han/strange house_pre sound remaster.mp4',
               infoPath: 'assets/textfiles/work_strange_house.txt'),
           Work(
               krName: '나들이',
               enName: 'Picnic',
               caption: '2023, 다채널 비디오, 컬러, 사운드, 14분 48초',
               imagePath: 'assets/images/works/picnic_1.png',
-              videoPath: 'file:///C:/Users/loves/OneDrive/Desktop/artwork/han/picnic_1.mp4',
+              videoPath: 'file:///C:/Users/loves/Desktop/artwork/han/picnic_1.mp4',
               infoPath: 'assets/textfiles/work_picnic_1.txt'),
           Work(
               krName: '나들이',
               enName: 'Picnic',
               caption: '2023, 단채널 비디오, 컬러, 사운드, 2분 24초',
               imagePath: 'assets/images/works/picnic_window_single.png',
-              videoPath: 'file:///C:/Users/loves/OneDrive/Desktop/artwork/han/picnic_window_single.mp4',
+              videoPath: 'file:///C:/Users/loves/Desktop/artwork/han/picnic_window_single.mp4',
               infoPath: 'assets/textfiles/work_picnic_1_single.txt'),
           Work(
               krName: '나들이2',
               enName: 'Picnic2',
               caption: '2023, 단채널 비디오, 컬러, 사운드, 11분 53초',
               imagePath: 'assets/images/works/picnic_2.png',
-              videoPath: 'file:///C:/Users/loves/OneDrive/Desktop/artwork/han/PICNIC2.mp4',
+              videoPath: 'file:///C:/Users/loves/Desktop/artwork/han/PICNIC2.mp4',
               infoPath: 'assets/textfiles/work_picnic_2.txt'),
         ])
   ];
