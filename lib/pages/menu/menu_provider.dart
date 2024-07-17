@@ -82,7 +82,7 @@ class MenuProvider extends ChangeNotifier {
         caption: work.caption,
         price: 3);
 
-    var contained = state.cartList.where((element) => element.workName == cart.workName);
+    var contained = state.cartList.where((element) => element.caption == cart.caption);
 
     if(contained.isEmpty) {
       state.cartList.add(cart);
@@ -92,7 +92,7 @@ class MenuProvider extends ChangeNotifier {
   }
 
   bool checkCart (Work work) {
-   var count = state.cartList.where((element) => element.workName == work.krName).length;
+   var count = state.cartList.where((element) => element.caption == work.caption).length;
    return count > 0 ? true : false;
   }
 
