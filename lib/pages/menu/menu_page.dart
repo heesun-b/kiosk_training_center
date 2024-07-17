@@ -45,7 +45,8 @@ class _MenuPageState extends State<MenuPage> {
     var selectProvider =  context.watch<SelectPeopleAndMethodProvider>();
 
     return BasePage(
-          audioPath: provider.state.currentPage > 1 ? 'assets/audios/fourth.mp3' : 'assets/audios/third.mp3',
+          audioPath: provider.state.currentPage == 0 ? 'assets/audios/third.mp3'
+              : provider.state.currentPage ==  1 ? 'assets/audios/help.mp3' : 'assets/audios/fourth.mp3',
           peopleCount: widget.peopleCount,
           widget: Row(
             children: [

@@ -5,5 +5,6 @@ class MyTextStyle {
   static const String uhBeeMysen = 'UhBeeMysen';
   static const String ownglyphJooreeletter = 'OwnglyphJooreeletter';
   static const String dungGeunMo = 'DungGeunMo';
+  static const String pretendard = 'PretendardVariable';
 
 }

@@ -9,10 +9,10 @@ class TitleArea extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return  Container(
-      margin: const EdgeInsets.symmetric(horizontal: 30),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       padding:  const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
       width: double.infinity,
-      height: 60,
+      height: 70,
       decoration: BoxDecoration(
         border: Border.all(
             color: Colours.black,
@@ -34,11 +34,11 @@ class TitleArea extends StatelessWidget {
           children: [
             Text(
               "Kiosk Training Center",
-              style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 13, fontWeight: FontWeight.bold),
+              style: TextStyle(fontFamily: MyTextStyle.pretendard, fontSize: 15, fontWeight: FontWeight.bold),
             ),
             Text(
               "키오스크 트레이닝 센터",
-              style: TextStyle(fontFamily: MyTextStyle.dungGeunMo, fontSize: 13, fontWeight: FontWeight.bold),
+              style: TextStyle(fontFamily: MyTextStyle.pretendard, fontSize: 15, fontWeight: FontWeight.bold),
             ),
           ],
         ),
